@@ -1,0 +1,77 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #fdf8f0;
+    color: #3e3022;
+    margin: 0;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 58px; /* 更大标题 */
+    margin-bottom: 70px;
+    font-weight: bold;
+    color: #2d1f12;
+    letter-spacing: 1px;
+}
+.float-text {
+  animation: float 3s ease-in-out infinite;
+  display: inline-block;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.menu-section {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.menu-section h2 {
+    font-size: 42px;
+    margin-bottom: 40px;
+    color: #4c3520;
+    border-bottom: 3px solid #d6bfa3;
+    padding-bottom: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #dcd2c3;
+}
+
+.item img {
+    width: 180px;       /* 图片更大 */
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-right: 30px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.info h3 {
+    font-size: 32px;   /* 菜名加大 */
+    margin: 0 0 10px;
+    color: #2f1e12;
+}
+
+.info p {
+    font-size: 24px;   /* 描述加大 */
+    margin: 0 0 10px;
+    color: #5e4730;
+    line-height: 1.5;
+}
+
+.info strong {
+    font-size: 28px;   /* 价格加大 */
+    color: #a8733b;
+}
