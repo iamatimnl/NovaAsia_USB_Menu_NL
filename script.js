@@ -5,5 +5,5 @@ window.onload = function () {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
             window.scrollTo(0, 0);
         }
-    }, 40);
+    }, 20);
 };
