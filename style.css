@@ -6,6 +6,17 @@ body {
     padding: 40px 20px;
     box-sizing: border-box;
 }
+<style>
+  body {
+    cursor: none;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+</style>
 
 
 h1 {
