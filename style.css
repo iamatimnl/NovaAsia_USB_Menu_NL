@@ -7,16 +7,7 @@ body {
     box-sizing: border-box;
 }
 
-  body {
-    cursor: none;
-    overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
-  }
-
-  body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
-
+ 
 
 
 h1 {
