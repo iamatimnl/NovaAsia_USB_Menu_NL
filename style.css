@@ -3,7 +3,7 @@ body {
     background-color: #fdf8f0;
     color: #3e3022;
     margin: 0;
-    padding: 0;
+    padding: 0 5%;
     box-sizing: border-box;
 }
 
@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 }
 h1 {
     text-align: center;
-    font-size: 58px; /* 更大标题 */
+    font-size: 48px; /* 更大标题 */
     margin-bottom: 70px;
     font-weight: bold;
     color: #2d1f12;
@@ -31,7 +31,7 @@ h1 {
 .float-text {
   animation: float 3s ease-in-out infinite;
   display: inline-block;
-  font-size: 32px;
+  font-size: 28px;
   margin-bottom: 20px;
 }
 
@@ -50,7 +50,7 @@ h1 {
 }
 
 .menu-section h2 {
-    font-size: 42px;
+    font-size: 36px;
     margin-bottom: 20px;
     color: #4c3520;
     border-bottom: 3px solid #d6bfa3;
@@ -68,28 +68,28 @@ h1 {
 }
 
 .item img {
-    width: 100%;
+    width: 90%;
     height: auto;
     object-fit: cover;
     border-radius: 14px;
-    margin: 0 0 10px;
+    margin: 0 auto 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .info h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 0 10px;
     color: #2f1e12;
 }
 
 .info p {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0 0 10px;
     color: #5e4730;
     line-height: 1.5;
 }
 
 .info strong {
-    font-size: 18px;
+    font-size: 16px;
     color: #a8733b;
 }
