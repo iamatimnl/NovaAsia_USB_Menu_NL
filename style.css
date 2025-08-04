@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 }
 h1 {
     text-align: center;
-    font-size: 48px; /* 更大标题 */
+    font-size: 58px; /* 更大标题 */
     margin-bottom: 70px;
     font-weight: bold;
     color: #2d1f12;
@@ -31,7 +31,7 @@ h1 {
 .float-text {
   animation: float 3s ease-in-out infinite;
   display: inline-block;
-  font-size: 28px;
+  font-size: 38px;
   margin-bottom: 20px;
 }
 
@@ -50,7 +50,7 @@ h1 {
 }
 
 .menu-section h2 {
-    font-size: 36px;
+    font-size: 46px;
     margin-bottom: 20px;
     color: #4c3520;
     border-bottom: 3px solid #d6bfa3;
@@ -77,19 +77,19 @@ h1 {
 }
 
 .info h3 {
-    font-size: 18px;
+    font-size: 28px;
     margin: 0 0 10px;
     color: #2f1e12;
 }
 
 .info p {
-    font-size: 14px;
+    font-size: 24px;
     margin: 0 0 10px;
     color: #5e4730;
     line-height: 1.5;
 }
 
 .info strong {
-    font-size: 16px;
+    font-size: 26px;
     color: #a8733b;
 }
