@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Orders</title>
+    <link rel="stylesheet" href="admin_orders.css" />
+    <script defer src="admin_orders.js"></script>
+</head>
+<body>
+    <!-- Top Toolbar -->
+    <header class="toolbar">
+        <div class="toolbar-left">
+            <input type="search" placeholder="Search orders" class="search" />
+            <select class="filter">
+                <option>All Statuses</option>
+                <option>Pending</option>
+                <option>Completed</option>
+            </select>
+            <input type="date" class="date" />
+        </div>
+        <div class="toolbar-right">
+            <button id="toggleView" class="btn secondary">Table View</button>
+            <button class="btn primary">Export</button>
+        </div>
+    </header>
+
+    <!-- Inline Banner for status feedback -->
+    <div id="banner" class="banner hidden"></div>
+
+    <!-- Orders List -->
+    <main id="orders" class="orders cards">
+        <!-- sample order cards -->
+        <article class="order-card" data-id="1">
+            <input type="checkbox" class="select" />
+            <h3>Order #1001</h3>
+            <p>Table 5 · Pending</p>
+            <button class="details">Details</button>
+        </article>
+        <article class="order-card" data-id="2">
+            <input type="checkbox" class="select" />
+            <h3>Order #1002</h3>
+            <p>Table 2 · Completed</p>
+            <button class="details">Details</button>
+        </article>
+        <article class="order-card" data-id="3">
+            <input type="checkbox" class="select" />
+            <h3>Order #1003</h3>
+            <p>Takeaway · Pending</p>
+            <button class="details">Details</button>
+        </article>
+    </main>
+
+    <!-- Details Drawer -->
+    <aside id="drawer" class="drawer hidden">
+        <div class="drawer-header">
+            <h2>Order Details</h2>
+            <button id="closeDrawer" class="btn icon">&times;</button>
+        </div>
+        <div class="drawer-body">
+            <p id="orderInfo">Order content...</p>
+            <label>Status
+                <select id="status">
+                    <option>Pending</option>
+                    <option>Completed</option>
+                </select>
+            </label>
+            <button class="btn secondary" id="print">Print Receipt</button>
+        </div>
+    </aside>
+
+    <!-- Batch Action Bar -->
+    <div id="batchBar" class="batch-bar hidden">
+        <span id="selectedCount">0 selected</span>
+        <button class="btn secondary" id="batchExport">Export</button>
+        <button class="btn primary" id="batchMark">Mark Completed</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+</body>
+</html>
