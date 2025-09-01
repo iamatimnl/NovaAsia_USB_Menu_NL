@@ -6,10 +6,6 @@ body {
     margin: 0;
     padding: 0 5%;
     box-sizing: border-box;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 @media screen and (orientation: portrait) {
@@ -27,8 +23,8 @@ body::-webkit-scrollbar {
 }
 h1 {
     text-align: center;
-    font-size: clamp(30px, 5vw, 56px); /* 更大标题 */
-    margin-bottom: 20px;
+    font-size: clamp(30px, 7vw, 56px); /* 更大标题 */
+    margin-bottom: 70px;
     font-weight: bold;
     color: #2d1f12;
     letter-spacing: 1px;
@@ -46,15 +42,12 @@ h1 {
 }
 
 .menu-section {
-    flex: 1;
     max-width: none;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: 1fr;
     gap: 20px;
     width: 100%;
-    overflow: hidden;
 }
 
 .menu-section h2 {
