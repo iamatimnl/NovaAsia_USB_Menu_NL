@@ -1,12 +1,13 @@
-
 window.onload = function () {
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
     }
-    setInterval(() => {
-        window.scrollBy(0, 1);
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-            window.scrollTo(0, 0);
+    setTimeout(() => {
+        const current = window.location.pathname.split('/').pop();
+        if (current === 'index.html') {
+            window.location.href = 'index2.html';
+        } else {
+            window.location.href = 'index.html';
         }
-    }, 20);
+    }, 15000);
 };
