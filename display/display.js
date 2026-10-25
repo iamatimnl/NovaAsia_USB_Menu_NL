@@ -293,16 +293,19 @@
   }
 
   // ?palette=… in the address (for trying one out) wins over display.json and the clock.
-  // Each page keeps the palette it was built with, so a page fading out never changes colour;
-  // the masthead and footer follow the root and blend over (see .masthead transition).
+  // Each page keeps the palette it was built with, so a page fading out never changes colour.
+  // The masthead and footer follow the root, which changes only when the next page is shown,
+  // so frame and page blend over together (see .masthead transition).
   function currentPalette() {
     var fromAddress = (location.search.match(/[?&]palette=([a-z]+)/) || [])[1];
     return fromAddress || paletteFor(state.config || {}, Date.now());
   }
-  function applyPalette() {
-    var palette = currentPalette();
-    if (document.documentElement.getAttribute('data-palette') !== palette) {
-      document.documentElement.setAttribute('data-palette', palette);
+  function applyPalette(palette) {
+    var root = document.documentElement;
+    if (root.getAttribute('data-palette') !== palette) root.setAttribute('data-palette', palette);
+    if (root.classList.contains('is-booting')) {
+      void getComputedStyle(document.querySelector('.masthead')).backgroundColor; // settle the first colours without a fade
+      root.classList.remove('is-booting');
     }
     return palette;
   }
@@ -315,8 +318,16 @@
     var footer = data.config.footer || {};
     if (footer.left) document.getElementById('footer-left').textContent = footer.left;
     if (footer.right) document.getElementById('footer-right').textContent = footer.right;
-    if (data.config.tagline) document.getElementById('tagline').textContent = data.config.tagline;
-    applyPalette();
+    var tagline = data.config.tagline; // one line, or a list of lines
+    if (tagline) {
+      var taglineEl = document.getElementById('tagline');
+      taglineEl.textContent = '';
+      (Array.isArray(tagline) ? tagline : [tagline]).forEach(function (line) {
+        var span = document.createElement('span');
+        span.textContent = line;
+        taglineEl.appendChild(span);
+      });
+    }
   }
 
   function advance() {
@@ -330,13 +341,15 @@
     state.index = (state.index + 1) % state.slides.length;
     var page = state.slides[state.index];
     var el = render(page);
-    el.setAttribute('data-palette', applyPalette());
+    var palette = currentPalette();
+    el.setAttribute('data-palette', palette);
     el.setAttribute('aria-hidden', 'true');
     deck.appendChild(el);
     fitRows(el);
     preload(el).then(function () {
       var old = Array.prototype.slice.call(deck.querySelectorAll('.slide.is-active'));
       el.getBoundingClientRect();
+      applyPalette(palette);
       el.classList.add('is-active');
       old.forEach(function (node) {
         node.classList.remove('is-active');
@@ -413,6 +426,7 @@
   fullscreenOnTap();
   loadData().then(function (data) {
     rebuild(data);
+    applyPalette(currentPalette()); // frame colours from the start, without a fade
     advance();
     housekeeping();
   }).catch(showError);

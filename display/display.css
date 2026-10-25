@@ -73,7 +73,11 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 }
 .masthead__logo { width: 104px; height: 104px; object-fit: contain; }
 .masthead__name { font-size: 44px; font-weight: 800; font-stretch: 116%; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
-.masthead__tagline { margin-left: auto; color: var(--chrome-accent); font-size: 24px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.masthead__tagline {
+  margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  color: var(--chrome-accent); font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: .08em; text-transform: uppercase;
+}
+.masthead__tagline span { white-space: nowrap; }
 
 .footer {
   display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 52px;
@@ -88,6 +92,9 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 .masthead, .footer, .masthead__tagline, .footer strong, .progress, .progress span {
   transition: background-color .9s ease, color .9s ease;
 }
+/* …but not at start-up: the first palette lands at once (removed by display.js). */
+.is-booting .masthead, .is-booting .footer, .is-booting .masthead__tagline, .is-booting .footer strong,
+.is-booting .progress, .is-booting .progress span { transition: none; }
 
 .deck { position: relative; overflow: hidden; }
 .slide {
