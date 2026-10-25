@@ -26,7 +26,7 @@
   - 不想自动切换：删掉 `"palette_after_dark"` 那一行，整天用 `"palette"`。
   - 预览：地址后加 `?palette=night` 可以随时看某一种配色，不影响屏幕。
   - 依赖屏幕时钟正确（见下面屏幕设置第 2 步「Auto sync」）。
-- 顶栏右边的介绍文字：`"tagline": ["Streetfood · Poké · Bento", "Fried rice · Sushi & meer"]`，每个引号是一行（最多两行，每行别比现在长太多，否则会挤到店名）。
+- 顶栏右边的介绍文字：`"tagline": "Poké · Bento · Fried rice · Sushi & meer"`。现在这一行刚好放满，不要再加长；要加词就写成两行：`["第一行", "第二行"]`。
 - 改停留时间：`"durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 }`（秒）。
 - 换特写商品：复制一个 `"type": "feature"` 段，改 `item`（商品 ID 见 `menu.json`）、`kicker`、`line`。
 - 一个特写想多播一次：加 `{ "type": "feature", "ref": "<那一段的 id>" }`。

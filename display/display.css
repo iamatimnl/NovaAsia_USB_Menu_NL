@@ -62,6 +62,7 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
   position: absolute; left: 50%; top: 50%;
   width: 1080px; height: 1920px; margin: -960px 0 0 -540px;
   display: grid; grid-template-rows: 150px 1fr 8px 112px;
+  grid-template-columns: minmax(0, 1fr); /* long text can never widen the page past the screen */
   overflow: hidden; background: var(--list-bg); color: var(--list-fg);
   transform-origin: 50% 50%;
 }
@@ -75,7 +76,7 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 .masthead__name { font-size: 44px; font-weight: 800; font-stretch: 116%; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
 .masthead__tagline {
   margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
-  color: var(--chrome-accent); font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--chrome-accent); font-size: 24px; font-weight: 700; font-stretch: 85%; line-height: 1.15; letter-spacing: .05em; text-transform: uppercase;
 }
 .masthead__tagline span { white-space: nowrap; }
 
