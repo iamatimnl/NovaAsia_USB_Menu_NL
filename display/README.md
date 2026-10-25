@@ -19,6 +19,13 @@
 
 ### display.json 常用改法
 
+- 配色：白天用 `"palette"`（现在是 `red` Nova 红），天黑后自动换成 `"palette_after_dark"` 里的 `palette`（现在是 `night` 夜市暖光）。
+  - 切换时间按 Hoofddorp 每天的日落、日出自动算（`lat`/`lon` 是店的位置）：日落前 `margin_minutes`（30）分钟换成夜间配色，日出后 30 分钟换回白天配色。冬天大约 16:00 换，夏天大约 21:30 换。
+  - 只在翻页时换，正在显示的那一页不会突然变色。
+  - 可选配色：`red`（Nova 红）、`night`（夜市暖光）、`washi`（和纸白）、`green`（Kiosk 绿）。
+  - 不想自动切换：删掉 `"palette_after_dark"` 那一行，整天用 `"palette"`。
+  - 预览：地址后加 `?palette=night` 可以随时看某一种配色，不影响屏幕。
+  - 依赖屏幕时钟正确（见下面屏幕设置第 2 步「Auto sync」）。
 - 改停留时间：`"durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 }`（秒）。
 - 换特写商品：复制一个 `"type": "feature"` 段，改 `item`（商品 ID 见 `menu.json`）、`kicker`、`line`。
 - 一个特写想多播一次：加 `{ "type": "feature", "ref": "<那一段的 id>" }`。

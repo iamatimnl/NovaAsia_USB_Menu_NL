@@ -258,15 +258,57 @@
     }));
   }
 
-  // ---------- playing ----------
-  // Colour palette: ?palette=… in the address (for trying one out) wins over display.json.
-  function applyPalette(config) {
-    var fromAddress = (location.search.match(/[?&]palette=([a-z]+)/) || [])[1];
-    document.documentElement.setAttribute('data-palette', fromAddress || config.palette || 'green');
+  // ---------- colours: day palette, and an after-dark palette from sunset to sunrise ----------
+  // Sunrise and sunset (ms since 1970) on the given day at lat/lon: the standard sunrise equation,
+  // within a minute or two at Dutch latitudes. Works from the device clock only, not its time zone.
+  function sunTimes(date, lat, lon) {
+    var rad = Math.PI / 180;
+    var sin = function (deg) { return Math.sin(deg * rad); };
+    var noon = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 12);
+    var n = Math.round(noon / 864e5 + 2440587.5 - 2451545 + 0.0008);
+    var meanNoon = n - lon / 360;
+    var anomaly = (357.5291 + 0.98560028 * meanNoon) % 360;
+    var centre = 1.9148 * sin(anomaly) + 0.02 * sin(2 * anomaly) + 0.0003 * sin(3 * anomaly);
+    var longitude = (anomaly + centre + 180 + 102.9372) % 360;
+    var transit = 2451545 + meanNoon + 0.0053 * sin(anomaly) - 0.0069 * sin(2 * longitude);
+    var sinDecl = sin(longitude) * sin(23.4397);
+    var cosDecl = Math.cos(Math.asin(sinDecl));
+    var cosHour = (sin(-0.833) - sin(lat) * sinDecl) / (Math.cos(lat * rad) * cosDecl);
+    if (cosHour < -1 || cosHour > 1) return null; // midnight sun or polar night
+    var half = Math.acos(cosHour) / rad / 360;
+    var toMs = function (julian) { return (julian - 2440587.5) * 864e5; };
+    return { rise: toMs(transit - half), set: toMs(transit + half) };
   }
 
+  // Which palette now: the day palette, or palette_after_dark.palette from margin_minutes before sunset
+  // until margin_minutes after sunrise.
+  function paletteFor(config, now) {
+    var day = config.palette || 'green';
+    var dark = config.palette_after_dark;
+    if (!dark || !dark.palette || typeof dark.lat !== 'number' || typeof dark.lon !== 'number') return day;
+    var sun = sunTimes(new Date(now), dark.lat, dark.lon);
+    if (!sun) return day;
+    var margin = (dark.margin_minutes || 0) * 60 * 1000;
+    return now >= sun.rise + margin && now < sun.set - margin ? day : dark.palette;
+  }
+
+  // ?palette=… in the address (for trying one out) wins over display.json and the clock.
+  // Each page keeps the palette it was built with, so a page fading out never changes colour;
+  // the masthead and footer follow the root and blend over (see .masthead transition).
+  function currentPalette() {
+    var fromAddress = (location.search.match(/[?&]palette=([a-z]+)/) || [])[1];
+    return fromAddress || paletteFor(state.config || {}, Date.now());
+  }
+  function applyPalette() {
+    var palette = currentPalette();
+    if (document.documentElement.getAttribute('data-palette') !== palette) {
+      document.documentElement.setAttribute('data-palette', palette);
+    }
+    return palette;
+  }
+
+  // ---------- playing ----------
   function rebuild(data) {
-    applyPalette(data.config);
     state.config = data.config;
     state.menu = data.menu;
     state.slides = expand(data.config, data.menu);
@@ -274,6 +316,7 @@
     if (footer.left) document.getElementById('footer-left').textContent = footer.left;
     if (footer.right) document.getElementById('footer-right').textContent = footer.right;
     if (data.config.tagline) document.getElementById('tagline').textContent = data.config.tagline;
+    applyPalette();
   }
 
   function advance() {
@@ -287,6 +330,7 @@
     state.index = (state.index + 1) % state.slides.length;
     var page = state.slides[state.index];
     var el = render(page);
+    el.setAttribute('data-palette', applyPalette());
     el.setAttribute('aria-hidden', 'true');
     deck.appendChild(el);
     fitRows(el);
@@ -373,5 +417,5 @@
     housekeeping();
   }).catch(showError);
 
-  window.NovaDisplay = { expand: expand, summary: summary, euro: euro, state: state, advance: advance };
+  window.NovaDisplay = { expand: expand, summary: summary, euro: euro, state: state, advance: advance, sunTimes: sunTimes, paletteFor: paletteFor };
 }());

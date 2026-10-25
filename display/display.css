@@ -84,10 +84,16 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 .progress { background: var(--progress-track); overflow: hidden; }
 .progress span { display: block; width: 100%; height: 100%; background: var(--progress-fill); transform: scaleX(0); transform-origin: left; }
 
+/* Day/evening switch: the frame blends over while the next page fades in. */
+.masthead, .footer, .masthead__tagline, .footer strong, .progress, .progress span {
+  transition: background-color .9s ease, color .9s ease;
+}
+
 .deck { position: relative; overflow: hidden; }
 .slide {
   position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease;
   display: flex; flex-direction: column; overflow: hidden;
+  background: var(--list-bg); color: var(--list-fg); /* each page carries its own palette */
 }
 .slide.is-active { opacity: 1; }
 
