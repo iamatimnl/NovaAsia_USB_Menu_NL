@@ -1,0 +1,1468 @@
+{
+ "schema": "nova-display-menu-v1",
+ "generated_at": "2026-10-25T03:56:55+00:00",
+ "source": "nova-asia@38ed0de catalog/operations-menu-source.json (2026-10-19) + Dashboard products from www.novaasia.nl capture 2026-09-30",
+ "catalog_version": "v1-000001-a2af9ee80212b2ed39a0",
+ "categories": [
+  {
+   "id": "crispy-rice-sandwich",
+   "name": "Crispy Rice Sandwich"
+  },
+  {
+   "id": "bento",
+   "name": "Bento"
+  },
+  {
+   "id": "ramen",
+   "name": "Ramen"
+  },
+  {
+   "id": "pokebowl",
+   "name": "Pokebowl"
+  },
+  {
+   "id": "fusion-specials",
+   "name": "Fusion Specials"
+  },
+  {
+   "id": "teppanyaki",
+   "name": "Teppanyaki Gebakken Rijst"
+  },
+  {
+   "id": "sushi",
+   "name": "Sushi"
+  },
+  {
+   "id": "sashimi",
+   "name": "Sashimi"
+  },
+  {
+   "id": "snack",
+   "name": "Snack"
+  },
+  {
+   "id": "dressing",
+   "name": "Dressing"
+  },
+  {
+   "id": "dessert",
+   "name": "Dessert"
+  },
+  {
+   "id": "drinks",
+   "name": "Dranken"
+  }
+ ],
+ "items": [
+  {
+   "id": "zalm-rice-sandwich",
+   "name": "Zalm rice sandwich",
+   "description": "Verse zalm, crispy sushirijst, komkommer, avocado",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "spicytuna-rice-sandwich",
+   "name": "Spicytuna rice sandwich",
+   "description": "Verse spicy tuna, crispy sushirijst, komkommer, avocado",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "ebi-rice-sandwich",
+   "name": "Ebi rice sandwich",
+   "description": "Ebi fry, crispy sushirijst, komkommer, avocado",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "beef-rice-sandwich",
+   "name": "Beef rice sandwich",
+   "description": "Terriyaki beef, crispy sushirijst, gebakken uitjes",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "california-rice-sandwich",
+   "name": "California rice sandwich",
+   "description": "Krabstick, crispy sushirijst, komkommer, avocado, masago",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "chicken-rice-sandwich",
+   "name": "Chicken rice sandwich",
+   "description": "Crispy chicken, crispy sushirijst, komkommer, avocado",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "teriyaki-kip-halal-rice-sandwich",
+   "name": "Teriyaki kip (halal) rice sandwich",
+   "description": "Teriyaki kip, gebakken uitjes",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "veggie-rice-sandwich",
+   "name": "Veggie rice sandwich",
+   "description": "Veggie loempia, avocado, komkommer",
+   "category": "crispy-rice-sandwich",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/T3yWSgcS/san-wen-yu-san-ming-zhi-(1).webp",
+   "available": true
+  },
+  {
+   "id": "japans-chicken-bento",
+   "name": "Japans Chicken Bento",
+   "description": "Teriyaki kipfilet, Sushi-rijst, Kimchi-komkommer, Chicken karaage",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "korean-chicken-bento",
+   "name": "Korean Chicken Bento",
+   "description": "Spicy kipfilet, Sushi-rijst, Kimchi-komkommer, Spicy crispy chicken",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "peking-duck-korean-sweet-sour-chicken-bento",
+   "name": "Peking Duck Korean Sweet Sour Chicken Bento",
+   "description": "Peking eend, Sushi-rijst, Kimchi-komkommer, Korean zoetzure kip",
+   "category": "bento",
+   "price_cents": 2300,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/828b76f7-f767-4659-bc81-c9c05785fc25.webp",
+   "available": true
+  },
+  {
+   "id": "bbq-chicken-bento",
+   "name": "BBQ Chicken Bento",
+   "description": "BBQ kipfilet, Sushi-rijst, Kimchi-komkommer, crispy chicken",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "korean-beef-bento",
+   "name": "Korean Beef Bento",
+   "description": "Gegrilde Korean beef, Sushi-rijst, Kimchi-komkommer, Spicy Chicken",
+   "category": "bento",
+   "price_cents": 2200,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/beef-bento.webp",
+   "available": true
+  },
+  {
+   "id": "meatlover-bento",
+   "name": "Meatlover Bento",
+   "description": "Gegrilde Terriyaki Beef, Sushi-rijst, Kimchi-komkommer, Crispy chicken",
+   "category": "bento",
+   "price_cents": 2200,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/beef-bento.webp",
+   "available": true
+  },
+  {
+   "id": "zalm-lover-bento",
+   "name": "Zalm Lover Bento",
+   "description": "Gegrilde terriyaki zalm, Sushi-rijst, Kimchi-komkommer, Crispy zalm nugget",
+   "category": "bento",
+   "price_cents": 2100,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/zalm-bento.webp",
+   "available": true
+  },
+  {
+   "id": "ebi-lover-bento",
+   "name": "Ebi Lover Bento",
+   "description": "Gegrilde gamba, Sushi-rijst, Kimchi-komkommer,Crispy ebi fry",
+   "category": "bento",
+   "price_cents": 2100,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/ebi-lover-bento.webp",
+   "available": true
+  },
+  {
+   "id": "surf-and-turf-bento",
+   "name": "Surf & Turf Bento",
+   "description": "Gegrilde beef, Sushi-rijst, Kimchi-komkommer, Crispy ebi fry",
+   "category": "bento",
+   "price_cents": 2200,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/surfturf-bento.webp",
+   "available": true
+  },
+  {
+   "id": "unagi-bento",
+   "name": "Unagi Bento",
+   "description": "Gegrilde paling, Sushi-rijst, Kimchi-komkommer, Gyoza",
+   "category": "bento",
+   "price_cents": 2200,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/unagi-bento.webp",
+   "available": true
+  },
+  {
+   "id": "usuyaki-bento",
+   "name": "Usuyaki Bento",
+   "description": "Gegrilde beef rolletjes, Sushi-rijst, Kimchi-komkommer, Crispy chicken",
+   "category": "bento",
+   "price_cents": 2200,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/usuyaki-bento.webp",
+   "available": true
+  },
+  {
+   "id": "veggie-bento",
+   "name": "Veggie Bento",
+   "description": "zeewiersalade, sushi-rijst, kimchikool, kimchikomkommer, tempura avocado, tempura tofu, veggie loempia",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/vega-bento.webp",
+   "available": true
+  },
+  {
+   "id": "xbento",
+   "name": "Xbento",
+   "description": "",
+   "category": "bento",
+   "price_cents": 0,
+   "price_kind": "build",
+   "image": "https://img.novaasia.nl/xbento.webp",
+   "available": true
+  },
+  {
+   "id": "peking-eend",
+   "name": "Peking eend",
+   "description": "Noodle, Peking eend, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/c31b60fc-de2d-4307-8464-8ddd6db1a0d6%20(1).webp",
+   "available": true
+  },
+  {
+   "id": "chicken-katsu",
+   "name": "Chicken katsu",
+   "description": "Noodle, krokante chicken katsu, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/jjrtN3sP/97e69f91-7aa8-43d6-941d-8b07ea610ed7.png",
+   "available": true
+  },
+  {
+   "id": "ebi-furai",
+   "name": "Ebi Furai",
+   "description": "Noodle, Ebi fry, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-ebifry.webp",
+   "available": true
+  },
+  {
+   "id": "gambas",
+   "name": "Gambas",
+   "description": "Noodle, gegrilde teriyaki gambas, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/1a.webp",
+   "available": true
+  },
+  {
+   "id": "karaage-ramen",
+   "name": "Karaage Ramen",
+   "description": "Noodle, Crispy chicken, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-chicken.webp",
+   "available": true
+  },
+  {
+   "id": "korean-chicken",
+   "name": "Korean Chicken",
+   "description": "Noodle, sappige Koreans zoetzuur kip, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-chicken.webp",
+   "available": true
+  },
+  {
+   "id": "teriyaki",
+   "name": "Teriyaki",
+   "description": "Noodle, Teriyaki kip, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/sxtDLjRY/Chat-GPT-Image-2026nian1yue22ri-15-10-38.png",
+   "available": true
+  },
+  {
+   "id": "beef",
+   "name": "Beef",
+   "description": "Noodle, Terriyaki beef, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-beef.webp",
+   "available": true
+  },
+  {
+   "id": "ribeye",
+   "name": "Ribeye",
+   "description": "Noodle, Ribeye, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-usuyaki.webp",
+   "available": true
+  },
+  {
+   "id": "chasiu",
+   "name": "Chasiu",
+   "description": "Noodle, Kip, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-chasiukip.webp",
+   "available": true
+  },
+  {
+   "id": "veggie",
+   "name": "Veggie",
+   "description": "Noodle, Tofu, Naruto-maki, Menma, Lente ui, Shoyu tamago",
+   "category": "ramen",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ramen-vega.webp",
+   "available": true
+  },
+  {
+   "id": "zalm-bowl",
+   "name": "Zalm Bowl",
+   "description": "Verse Zalm, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/zalm-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "tuna-bowl",
+   "name": "Tuna Bowl",
+   "description": "Verse Tonijn, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/tuna-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "ebi-fry-bowl",
+   "name": "Ebi Fry Bowl",
+   "description": "Ebi Fry, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ebifry-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "chicken-karaage-bowl",
+   "name": "Chicken Karaage Bowl",
+   "description": "Crispy Chicken, Sushi-rijst, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/chicken-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "spicy-chicken-bowl",
+   "name": "Spicy Chicken Bowl",
+   "description": "Spicy Chicken, Sushi-rijst, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/chicken-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "korean-chicken-bowl",
+   "name": "Korean Chicken Bowl",
+   "description": "Zoetzure Korean chicken, Sushi-rijst, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/chicken-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "teriyaki-chicken-bowl",
+   "name": "Teriyaki Chicken Bowl",
+   "description": "Teriyaki Chicken, Sushi-rijst, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/teriyaki-chicken-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "bbq-chicken-bowl",
+   "name": "BBQ-Chicken Bowl",
+   "description": "BBQ chicken, Sushi-rijst, Gebakken uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/teriyaki-chicken-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "teriyaki-beef-bowl",
+   "name": "Teriyaki Beef Bowl",
+   "description": "Teriyaki Beef, Sushi-rijst, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/beef-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "katsu-pokebowl",
+   "name": "Katsu Pokebowl",
+   "description": "Krokante chicken katsu, Sushi-rijst, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/cL5g7SvR/Chat-GPT-Image-2026nian1yue22ri-15-18-47.png",
+   "available": true
+  },
+  {
+   "id": "california-bowl",
+   "name": "California Bowl",
+   "description": "Krabstick, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/california-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "unagi-bowl",
+   "name": "Unagi Bowl",
+   "description": "Grilde Paling, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/unagi-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "vega-bowl",
+   "name": "Vega Bowl",
+   "description": "Sushi-rijst, Tofu, Gebakken Uitjes, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/vega-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "meatlover-bowl",
+   "name": "Meatlover Bowl",
+   "description": "Teriyaki Beef, Crispy Chicken, Teriyaki Chicken, Spicy Chicken, Sushi-rijst, Gebakken Uitjes",
+   "category": "pokebowl",
+   "price_cents": 1700,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/meatlover-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "rainbow-bowl",
+   "name": "Rainbow Bowl",
+   "description": "Zalm, Tonijn, Krabstick, Sushi-rijst, Masago, Avocado",
+   "category": "pokebowl",
+   "price_cents": 1700,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/rainbowl.webp",
+   "available": true
+  },
+  {
+   "id": "spicy-tuna-bowl",
+   "name": "Spicy Tuna Bowl",
+   "description": "Spicy tuna, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/spicytuna-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "flamed-zalm-bowl",
+   "name": "Flamed Zalm Bowl",
+   "description": "Flamed zalm, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/flamed-zalm-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "flamed-tuna-bowl",
+   "name": "Flamed Tuna Bowl",
+   "description": "Flamed tuna, Sushi-rijst, Masago, Bonen, Avocado, Komkommer, Mais, Zeewiersalade",
+   "category": "pokebowl",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/flamed-tuna-bowl.webp",
+   "available": true
+  },
+  {
+   "id": "x-bowl",
+   "name": "X-Bowl",
+   "description": "",
+   "category": "pokebowl",
+   "price_cents": 300,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/xbowl.webp",
+   "available": true
+  },
+  {
+   "id": "fusion-karaage-sweet-and-sour",
+   "name": "Fusion Karaage Sweet & Sour",
+   "description": "Crispy fusion karaage met zoetzure glaze, ananas en paprika, geserveerd met rijst.",
+   "category": "fusion-specials",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/fusion.webp",
+   "available": true
+  },
+  {
+   "id": "fusion-zalm-zoet-and-zuur",
+   "name": "Fusion zalm zoet & zuur",
+   "description": "Crispy fusion zalm blokjes met zoetzure glaze, ananas en paprika, geserveerd met rijst.",
+   "category": "fusion-specials",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/fusion.webp",
+   "available": true
+  },
+  {
+   "id": "chicken-katsu-gebakken-rijst",
+   "name": "Chicken katsu gebakken rijst",
+   "description": "Krokante chicken katsu, ei, gebakken rijst, lente-ui, zwarte peper, sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-katsu.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-peking-duck",
+   "name": "Fried rice Peking duck",
+   "description": "Peking eend, Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/3726257c-4e99-416c-8633-31366454bd99.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-gambas",
+   "name": "Fried rice gambas",
+   "description": "Gegrilde Gamba Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-gamba.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-beef",
+   "name": "Fried rice beef",
+   "description": "Terriyaki Beef, Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-beef.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-teriyaki-kip",
+   "name": "Fried rice teriyaki kip",
+   "description": "Terriyaki Chicken, Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-chicken.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-bbq-kip",
+   "name": "Fried rice BBQ-Kip",
+   "description": "Kip, Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-chasiu-kip.webp",
+   "available": true
+  },
+  {
+   "id": "fried-rice-ebi-fry",
+   "name": "Fried rice Ebi fry",
+   "description": "Ebi fry Ei, Gebakken Rijst, Lente-ui, Zwarte Peper, Sojasaus",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/fried-rice-ebifry.webp",
+   "available": true
+  },
+  {
+   "id": "kappa-maki",
+   "name": "Kappa Maki",
+   "description": "8 stuks",
+   "category": "sushi",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/kappa-maki.webp",
+   "available": true
+  },
+  {
+   "id": "avocado-maki",
+   "name": "Avocado Maki",
+   "description": "8 stuks",
+   "category": "sushi",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/avocado-maki.webp",
+   "available": true
+  },
+  {
+   "id": "sake-maki",
+   "name": "Sake Maki",
+   "description": "8 stuks",
+   "category": "sushi",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/sake-maki.webp",
+   "available": true
+  },
+  {
+   "id": "tekka-maki",
+   "name": "Tekka Maki",
+   "description": "8 stuks",
+   "category": "sushi",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/tekka-maki.webp",
+   "available": true
+  },
+  {
+   "id": "ebi-roll",
+   "name": "Ebi Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/tempura-ebi-roll.webp",
+   "available": true
+  },
+  {
+   "id": "chicken-roll",
+   "name": "Chicken Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/crunchy-chicken.webp",
+   "available": true
+  },
+  {
+   "id": "salmon-roll",
+   "name": "Salmon Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/salmon-roll.webp",
+   "available": true
+  },
+  {
+   "id": "tonijn-roll",
+   "name": "Tonijn Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/spicytuna-roll.webp",
+   "available": true
+  },
+  {
+   "id": "california-roll",
+   "name": "California Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/california-roll.webp",
+   "available": true
+  },
+  {
+   "id": "beef-roll",
+   "name": "Beef Roll",
+   "description": "4 stuks",
+   "category": "sushi",
+   "price_cents": 600,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/crunchy-chicken.webp",
+   "available": true
+  },
+  {
+   "id": "salmon-roll-special",
+   "name": "Salmon Roll Special",
+   "description": "Gepersonaliseerd met toppings naar keuze",
+   "category": "sushi",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/salmon-roll-special.webp",
+   "available": true
+  },
+  {
+   "id": "tuna-roll-special",
+   "name": "Tuna Roll Special",
+   "description": "Gepersonaliseerd met toppings naar keuze",
+   "category": "sushi",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/salmon-roll-special.webp",
+   "available": true
+  },
+  {
+   "id": "beef-roll-special",
+   "name": "Beef Roll Special",
+   "description": "Beef sushi roll met flamed ribeye als topping",
+   "category": "sushi",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/beef-roll-special.webp",
+   "available": true
+  },
+  {
+   "id": "dragon-roll",
+   "name": "Dragon roll",
+   "description": "Gepersonaliseerd met toppings naar keuze",
+   "category": "sushi",
+   "price_cents": 1600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/dragon-roll.webp",
+   "available": true
+  },
+  {
+   "id": "nigiri-box",
+   "name": "Nigiri Box",
+   "description": "Stel je eigen nigiri box samen — kies 5 stuks",
+   "category": "sushi",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/nigiri-box.webp",
+   "available": true
+  },
+  {
+   "id": "sushi-meatlover-box",
+   "name": "Sushi Meatlover box",
+   "description": "18 stuks – 9× Beef Roll + 9× Crispy Chicken Roll",
+   "category": "sushi",
+   "price_cents": 2300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/meat-lover-box.webp",
+   "available": true
+  },
+  {
+   "id": "oranje-box",
+   "name": "Oranje Box",
+   "description": "20 stuks – 8× Salmon Roll + 8× Salmon Maki + 4× Salmon Nigiri",
+   "category": "sushi",
+   "price_cents": 2300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/oranje-box.webp",
+   "available": true
+  },
+  {
+   "id": "all-star-box",
+   "name": "All Star Box",
+   "description": "16 stuks Chefschoice – keuze uit vis/vlees – verrassend samengesteld",
+   "category": "sushi",
+   "price_cents": 2300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/allstar-box.webp",
+   "available": true
+  },
+  {
+   "id": "crispy-box",
+   "name": "Crispy box",
+   "description": "24 stuks – Crunchy zalm roll,tempura ebi roll,crispy chicken roll",
+   "category": "sushi",
+   "price_cents": 2800,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/crispy-box.webp",
+   "available": true
+  },
+  {
+   "id": "nova-box",
+   "name": "Nova Box",
+   "description": "44 stuks – 8× zalm roll + 8× tempura ebi roll + 8× california roll + 8× zalm maki + 8× kappa maki + 2× zalm nigiri + 2× tuna nigiri",
+   "category": "sushi",
+   "price_cents": 4000,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/Natuurlijke%20sushiplank%20op%20transparante%20achtergrond.webp",
+   "available": true
+  },
+  {
+   "id": "supernova-box",
+   "name": "Supernova Box",
+   "description": "44 stuks – 8× zalm maki + 8× komkommer maki + 4× california roll + 4× roll + 4× beef + 4× tempura ebi roll + 2× zalm nigiri + 2× tuna nigiri + 2× unagi nigiri + 3× zalm sashimi + 3× tuna sashimi",
+   "category": "sushi",
+   "price_cents": 4600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/Sushiplateau%20op%20transparante%20achtergrond.webp",
+   "available": true
+  },
+  {
+   "id": "x-box",
+   "name": "X-Box",
+   "description": "",
+   "category": "sushi",
+   "price_cents": 4500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/nova-box.webp",
+   "available": true
+  },
+  {
+   "id": "salmon-sashimi",
+   "name": "Salmon sashimi",
+   "description": "",
+   "category": "sashimi",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/zalm-sashimi.webp",
+   "available": true
+  },
+  {
+   "id": "flamed-salmon-sashimi",
+   "name": "Flamed salmon sashimi",
+   "description": "",
+   "category": "sashimi",
+   "price_cents": 1100,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/flamend-zalm-sashimi.webp",
+   "available": true
+  },
+  {
+   "id": "tonijn-sashimi",
+   "name": "Tonijn sashimi",
+   "description": "",
+   "category": "sashimi",
+   "price_cents": 1000,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/tuna-sashimi.webp",
+   "available": true
+  },
+  {
+   "id": "flamed-tonijn-sashimi",
+   "name": "Flamed tonijn sashimi",
+   "description": "",
+   "category": "sashimi",
+   "price_cents": 1100,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/flamed-tuna-sashimi.webp",
+   "available": true
+  },
+  {
+   "id": "beef-sashimi",
+   "name": "Beef sashimi",
+   "description": "",
+   "category": "sashimi",
+   "price_cents": 1200,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/beef-sashimi.webp",
+   "available": true
+  },
+  {
+   "id": "vegetarische-korean-corn-dog",
+   "name": "Vegetarische Korean Corn Dog",
+   "description": "",
+   "category": "snack",
+   "price_cents": 550,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/66k7wMKY/corndog.webp",
+   "available": true
+  },
+  {
+   "id": "karaage",
+   "name": "Karaage",
+   "description": "",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/karaage.webp",
+   "available": true
+  },
+  {
+   "id": "katsu",
+   "name": "Katsu",
+   "description": "",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/katsu.webp",
+   "available": true
+  },
+  {
+   "id": "ebi-fry-4-st",
+   "name": "Ebi Fry 4 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ebi-fry.webp",
+   "available": true
+  },
+  {
+   "id": "ebi-kroket",
+   "name": "Ebi kroket",
+   "description": "",
+   "category": "snack",
+   "price_cents": 550,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/ebi-kroket.webp",
+   "available": true
+  },
+  {
+   "id": "spicy-crispy-chicken-5-st",
+   "name": "Spicy Crispy Chicken 5 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/karaage.webp",
+   "available": true
+  },
+  {
+   "id": "japans-zalm-nugget",
+   "name": "Japans Zalm Nugget",
+   "description": "",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/zalm-nugget.webp",
+   "available": true
+  },
+  {
+   "id": "mini-loempia-6-st",
+   "name": "Mini Loempia 6 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/mini-loempia.webp",
+   "available": true
+  },
+  {
+   "id": "chicken-loempia-2-st",
+   "name": "Chicken Loempia 2 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/chicken-loempia.webp",
+   "available": true
+  },
+  {
+   "id": "gyoza-5-st",
+   "name": "Gyoza 5 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/gyoza.webp",
+   "available": true
+  },
+  {
+   "id": "inktvis-ringen-5-st",
+   "name": "Inktvis Ringen 5 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/inktvis-ring.webp",
+   "available": true
+  },
+  {
+   "id": "sesambal-5-st",
+   "name": "Sesambal 5 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/sesambal.webp",
+   "available": true
+  },
+  {
+   "id": "yakitori-4-st",
+   "name": "Yakitori 4 st",
+   "description": "",
+   "category": "snack",
+   "price_cents": 600,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/yakitori.webp",
+   "available": true
+  },
+  {
+   "id": "edamame",
+   "name": "Edamame",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/edamame.webp",
+   "available": true
+  },
+  {
+   "id": "kimchi-komkommer",
+   "name": "Kimchi Komkommer",
+   "description": "",
+   "category": "snack",
+   "price_cents": 450,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/kimchi-komkommer.webp",
+   "available": true
+  },
+  {
+   "id": "kimchi-kool",
+   "name": "Kimchi Kool",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/kimchi-kool.webp",
+   "available": true
+  },
+  {
+   "id": "zeewiersalade-100g",
+   "name": "Zeewiersalade 100g",
+   "description": "",
+   "category": "snack",
+   "price_cents": 500,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/zeewier-salade.webp",
+   "available": true
+  },
+  {
+   "id": "unagi-saus-30ml",
+   "name": "Unagi saus 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "spicy-mayo-30ml",
+   "name": "Spicy mayo 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "japanse-mayo-30ml",
+   "name": "Japanse mayo 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "spicy-teriyaki-saus-30ml",
+   "name": "Spicy teriyaki saus 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "korean-chilisaus-30ml",
+   "name": "Korean chilisaus 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "sesam-saus-30ml",
+   "name": "Sesam saus 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "curry-mayo-30ml",
+   "name": "Curry mayo 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "wasabi-mayo-30ml",
+   "name": "Wasabi mayo 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "truffel-mayo-30ml",
+   "name": "Truffel mayo 30ml",
+   "description": "",
+   "category": "dressing",
+   "price_cents": 50,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/saus.webp",
+   "available": true
+  },
+  {
+   "id": "mochi-passievrucht",
+   "name": "Mochi Passievrucht",
+   "description": "",
+   "category": "dessert",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/mochi-passiefruit.webp",
+   "available": true
+  },
+  {
+   "id": "mochi-aardbei",
+   "name": "Mochi Aardbei",
+   "description": "",
+   "category": "dessert",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/mochi-aardbei.webp",
+   "available": true
+  },
+  {
+   "id": "mochi-coco",
+   "name": "Mochi Coco",
+   "description": "",
+   "category": "dessert",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/fWrC9pn4/bai-se-ye-zi-ma-shu-xi-jie-zhao-pian.webp",
+   "available": true
+  },
+  {
+   "id": "mochi-pistachio",
+   "name": "Mochi Pistachio",
+   "description": "",
+   "category": "dessert",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/mochi-pistachio.webp",
+   "available": true
+  },
+  {
+   "id": "cola",
+   "name": "Cola",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 250,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/coca-cola.webp",
+   "available": true
+  },
+  {
+   "id": "cola-zero",
+   "name": "Cola Zero",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 250,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/cola-zero.webp",
+   "available": true
+  },
+  {
+   "id": "spa-blauw",
+   "name": "Spa Blauw",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 250,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/spa-blauw.webp",
+   "available": true
+  },
+  {
+   "id": "spa-rood",
+   "name": "Spa Rood",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 250,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/spa-rood.webp",
+   "available": true
+  },
+  {
+   "id": "red-bull",
+   "name": "Red Bull",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/red-bull.webp",
+   "available": true
+  },
+  {
+   "id": "heineken-330ml",
+   "name": "Heineken 330ml",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 300,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/heineken.webp",
+   "available": true
+  },
+  {
+   "id": "mini-japans-chicken-bento",
+   "name": "Mini Japans Chicken Bento",
+   "description": "Teriyaki kipfilet, Sushi-rijst, Kimchi-komkommer, Chicken karaage",
+   "category": "bento",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-korean-chicken-bento",
+   "name": "Mini Korean Chicken Bento",
+   "description": "Spicy kipfilet, Sushi-rijst, Kimchi-komkommer, Spicy crispy chicken",
+   "category": "bento",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-peking-duck-korean-sweet-sour-chicken-bento",
+   "name": "Mini Peking Duck Korean Sweet Sour Chicken Bento",
+   "description": "Peking eend, Sushi-rijst, Kimchi-komkommer, Korean zoetzure kip",
+   "category": "bento",
+   "price_cents": 2100,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/828b76f7-f767-4659-bc81-c9c05785fc25.webp",
+   "available": true
+  },
+  {
+   "id": "mini-bbq-chicken-bento",
+   "name": "Mini BBQ Chicken Bento",
+   "description": "BBQ kipfilet, Sushi-rijst, Kimchi-komkommer, crispy chicken",
+   "category": "bento",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/chicken-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-korean-beef-bento",
+   "name": "Mini Korean Beef Bento",
+   "description": "Gegrilde Korean beef, Sushi-rijst, Kimchi-komkommer, Spicy Chicken",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/beef-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-meatlover-bento",
+   "name": "Mini Meatlover Bento",
+   "description": "Gegrilde Terriyaki Beef, Sushi-rijst, Kimchi-komkommer, Crispy chicken",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/beef-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-zalm-lover-bento",
+   "name": "Mini Zalm Lover Bento",
+   "description": "Gegrilde terriyaki zalm, Sushi-rijst, Kimchi-komkommer, Crispy zalm nugget",
+   "category": "bento",
+   "price_cents": 1900,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/zalm-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-ebi-lover-bento",
+   "name": "Mini Ebi Lover Bento",
+   "description": "Gegrilde gamba, Sushi-rijst, Kimchi-komkommer,Crispy ebi fry",
+   "category": "bento",
+   "price_cents": 1900,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/ebi-lover-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-surf-and-turf-bento",
+   "name": "Mini Surf & Turf Bento",
+   "description": "Gegrilde beef, Sushi-rijst, Kimchi-komkommer, Crispy ebi fry",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/surfturf-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-unagi-bento",
+   "name": "Mini Unagi Bento",
+   "description": "Gegrilde paling, Sushi-rijst, Kimchi-komkommer, Gyoza",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/unagi-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-usuyaki-bento",
+   "name": "Mini Usuyaki Bento",
+   "description": "Gegrilde beef rolletjes, Sushi-rijst, Kimchi-komkommer, Crispy chicken",
+   "category": "bento",
+   "price_cents": 2000,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/usuyaki-bento.webp",
+   "available": true
+  },
+  {
+   "id": "mini-veggie-bento",
+   "name": "Mini Veggie Bento",
+   "description": "zeewiersalade, sushi-rijst, kimchikool, kimchikomkommer, tempura avocado, tempura tofu, veggie loempia",
+   "category": "bento",
+   "price_cents": 1800,
+   "price_kind": "from",
+   "image": "https://img.novaasia.nl/vega-bento.webp",
+   "available": true
+  },
+  {
+   "id": "dish-13666eecd5174ca9",
+   "name": "Veggie Box – 22 stuks",
+   "description": "8 veggie rolls, 8 komkommer maki, 2 tamago nigiri, 2 inari en 2 avocado nigiri.",
+   "category": "sushi",
+   "price_cents": 2000,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/veggie.webp",
+   "available": true,
+   "source": "website capture 2026-09-30",
+   "verify": true
+  },
+  {
+   "id": "dish-1af51a14b3574de9",
+   "name": "Korean Potato Chicken Corndog",
+   "description": "Krokante Koreaanse corn dog met kipworst en aardappelblokjes. 1 stuk.",
+   "category": "snack",
+   "price_cents": 650,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/d0BzxW87/AEB8D013-63FA-4064-9415-4178A1172D09.png",
+   "available": true,
+   "source": "website capture 2026-09-30",
+   "verify": true
+  },
+  {
+   "id": "dish-1f145f2d4714461a",
+   "name": "Fanta – 330ml",
+   "description": "",
+   "category": "drinks",
+   "price_cents": 250,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/Fanta-transparent.webp",
+   "available": true,
+   "source": "website capture 2026-09-30",
+   "verify": true
+  },
+  {
+   "id": "dish-4d1ae3534a354dce",
+   "name": "Mochi – Green Tea",
+   "description": "",
+   "category": "dessert",
+   "price_cents": 400,
+   "price_kind": "fixed",
+   "image": "https://img.novaasia.nl/mochi-pistachio.webp",
+   "available": true,
+   "source": "website capture 2026-09-30",
+   "verify": true
+  },
+  {
+   "id": "dish-65f4e388162045e2",
+   "name": "Korean Chicken Fried Rice",
+   "description": "Gebakken rijst met Koreaanse kip in een zoet-pittige saus.",
+   "category": "teppanyaki",
+   "price_cents": 1800,
+   "price_kind": "fixed",
+   "image": "https://i.postimg.cc/wxmCNK2M/Codex-tu-xiang-2026nian9yue18ri-09-38-40.png",
+   "available": true,
+   "source": "website capture 2026-09-30",
+   "verify": true
+  }
+ ]
+}
