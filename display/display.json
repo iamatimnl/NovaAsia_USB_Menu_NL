@@ -1,6 +1,7 @@
 {
  "schema": "nova-display-playlist-v1",
  "note": "Volgorde en teksten van het menuscherm. Prijzen, namen, foto's en beschikbaarheid komen uit menu.json; hier staan alleen keuzes en verkoopregels.",
+ "palette": "green",
  "durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 },
  "footer": { "left": "Bestel binnen aan de kiosk", "right": "novaasia.nl" },
  "tagline": "Sushi · Poké · Bento · Ramen",

@@ -259,7 +259,14 @@
   }
 
   // ---------- playing ----------
+  // Colour palette: ?palette=… in the address (for trying one out) wins over display.json.
+  function applyPalette(config) {
+    var fromAddress = (location.search.match(/[?&]palette=([a-z]+)/) || [])[1];
+    document.documentElement.setAttribute('data-palette', fromAddress || config.palette || 'green');
+  }
+
   function rebuild(data) {
+    applyPalette(data.config);
     state.config = data.config;
     state.menu = data.menu;
     state.slides = expand(data.config, data.menu);
@@ -366,5 +373,5 @@
     housekeeping();
   }).catch(showError);
 
-  window.NovaDisplay = { expand: expand, summary: summary, euro: euro, state: state };
+  window.NovaDisplay = { expand: expand, summary: summary, euro: euro, state: state, advance: advance };
 }());
