@@ -1,0 +1,13 @@
+{
+  "name": "Nova Asia Menuscherm",
+  "short_name": "Nova Menu",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#102b24",
+  "theme_color": "#102b24",
+  "icons": [
+    { "src": "assets/nova-asia-logo-white.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

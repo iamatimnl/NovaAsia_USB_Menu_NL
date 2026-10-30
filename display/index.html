@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="nl" class="is-booting">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nova Asia Menuscherm</title>
+  <meta name="theme-color" content="#102b24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="display.css?v=20261025-5">
+</head>
+<body>
+  <!-- 43-inch portrait menu screen: no interaction, plays on its own. Layout is a fixed 1080x1920 stage scaled to the screen. -->
+  <main id="stage" class="stage" aria-live="off">
+    <header class="masthead">
+      <img class="masthead__logo" src="assets/nova-asia-logo-white.png" alt="" width="104" height="104">
+      <span class="masthead__name">Nova Asia</span>
+      <span class="masthead__tagline" id="tagline"><span>Poké · Bento · Fried rice · Sushi &amp; meer</span></span>
+    </header>
+    <div id="deck" class="deck"></div>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+    <footer class="footer">
+      <span id="footer-left">Bestel binnen aan de kiosk</span>
+      <strong id="footer-right">novaasia.nl</strong>
+    </footer>
+  </main>
+  <script src="display.js?v=20261025-5"></script>
+</body>
+</html>
