@@ -20,9 +20,67 @@
   var state = { config: null, menu: null, slides: [], index: -1, timer: null, pending: null, lastAdvance: Date.now(), bootedAt: Date.now() };
 
   // ---------- layout ----------
+  // ?rotate=270 (screen turned clockwise) or ?rotate=90 (turned counter-clockwise): for a screen mounted
+  // portrait whose browser still runs landscape. Only acts while the browser really is landscape, so it is
+  // harmless once the screen's own rotation works.
+  var ROTATE = +((location.search.match(/[?&]rotate=(90|270)\b/) || [])[1] || 0);
+
+  // The part of the page that is actually on screen. Some signage browsers zoom the page (visual
+  // viewport scale > 1), which would crop a stage sized to the window; fit the visible area instead.
+  function visibleArea() {
+    var vv = window.visualViewport;
+    if (vv && vv.width > 0 && vv.height > 0) {
+      return { w: vv.width, h: vv.height, cx: vv.offsetLeft + vv.width / 2, cy: vv.offsetTop + vv.height / 2 };
+    }
+    return { w: window.innerWidth, h: window.innerHeight, cx: window.innerWidth / 2, cy: window.innerHeight / 2 };
+  }
+
   function fit() {
-    var scale = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H);
-    stage.style.transform = 'scale(' + scale + ')';
+    var area = visibleArea();
+    stage.style.left = area.cx + 'px'; // the stage's negative margins keep it centred on this point
+    stage.style.top = area.cy + 'px';
+    if (ROTATE && area.w > area.h) {
+      stage.style.transform = 'rotate(' + ROTATE + 'deg) scale(' + Math.min(area.w / STAGE_H, area.h / STAGE_W) + ')';
+    } else {
+      stage.style.transform = 'scale(' + Math.min(area.w / STAGE_W, area.h / STAGE_H) + ')';
+    }
+  }
+
+  // ?debug=1: the browser's own sizes on screen, a red frame on the window edges and a yellow frame on
+  // the visible area. For setting up a new screen; a photo of it shows what the browser reports.
+  function showDebug() {
+    if (!/[?&]debug=1\b/.test(location.search)) return;
+    var frame = document.createElement('div');
+    frame.id = 'nova-debug-frame';
+    frame.style.cssText = 'position:fixed;inset:0;border:8px solid #ff2a2a;z-index:9998;pointer-events:none;';
+    var seen = document.createElement('div');
+    seen.style.cssText = 'position:absolute;border:8px dashed #ffd400;z-index:9998;pointer-events:none;box-sizing:border-box;';
+    var panel = document.createElement('pre');
+    panel.id = 'nova-debug';
+    panel.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;margin:0;padding:24px 32px;' +
+      'background:rgba(0,0,0,.88);color:#7CFC00;font:28px/1.45 monospace;white-space:pre;border-radius:12px;';
+    document.body.appendChild(frame);
+    document.body.appendChild(seen);
+    document.body.appendChild(panel);
+    function update() {
+      var vv = window.visualViewport;
+      var ua = navigator.userAgent;
+      if (vv) {
+        seen.style.left = vv.offsetLeft + 'px'; seen.style.top = vv.offsetTop + 'px';
+        seen.style.width = vv.width + 'px'; seen.style.height = vv.height + 'px';
+      }
+      panel.textContent = [
+        'window   ' + window.innerWidth + ' × ' + window.innerHeight,
+        'visible  ' + (vv ? Math.round(vv.width) + ' × ' + Math.round(vv.height) + '   zoom ' + vv.scale.toFixed(2) +
+          '   offset ' + Math.round(vv.offsetLeft) + ',' + Math.round(vv.offsetTop) : 'n/a'),
+        'page     ' + document.documentElement.clientWidth + ' × ' + document.documentElement.clientHeight,
+        'screen   ' + screen.width + ' × ' + screen.height + '   dpr ' + window.devicePixelRatio,
+        'stage    ' + stage.style.transform,
+        (ua.match(/Chrome\/[\d.]+/) || ['Chrome/?'])[0] + '   ' + (ua.match(/Android [\d.]+/) || ['Android ?'])[0],
+      ].join('\n');
+    }
+    update();
+    setInterval(update, 1000);
   }
 
   // ---------- data ----------
@@ -420,6 +478,11 @@
 
   fit();
   window.addEventListener('resize', fit);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', fit);
+    window.visualViewport.addEventListener('scroll', fit);
+  }
+  showDebug();
   document.addEventListener('contextmenu', function (event) { event.preventDefault(); });
   registerWorker();
   keepAwake();
