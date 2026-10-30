@@ -25,7 +25,7 @@
   - 可选配色：`red`（Nova 红）、`night`（夜市暖光）、`washi`（和纸白）、`green`（Kiosk 绿）。
   - 不想自动切换：删掉 `"palette_after_dark"` 那一行，整天用 `"palette"`。
   - 预览：地址后加 `?palette=night` 可以随时看某一种配色，不影响屏幕。
-  - 依赖屏幕时钟正确（见下面屏幕设置第 2 步「Auto sync」）。
+  - 依赖屏幕时钟正确（见下面屏幕设置第 2 步「Date & time」）。
 - 顶栏右边的介绍文字：`"tagline": "Poké · Bento · Fried rice · Sushi & meer"`。现在这一行刚好放满，不要再加长；要加词就写成两行：`["第一行", "第二行"]`。
 - 改停留时间：`"durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 }`（秒）。
 - 换特写商品：复制一个 `"type": "feature"` 段，改 `item`（商品 ID 见 `menu.json`）、`kicker`、`line`。
@@ -52,19 +52,28 @@ python3 tools/build_menu_snapshot.py \
 `https://iamatimnl.github.io/NovaAsia_USB_Menu_NL/display/`
 旧地址（根目录 `index.html`）保持不变，直到确认后再停用。
 
-## 屏幕设置（iiyama ProLite LH4360UHS-B2AG，Android 11）
+## 屏幕设置（iiyama ProLite LH4365UHSB-B1，Android 11）
 
-网页负责：轮播、自动缩放、断网继续播放、每晚刷新、卡住自动重启、保持屏幕常亮（浏览器支持时）。
+地址：`https://iamatimnl.github.io/NovaAsia_USB_Menu_NL/display/`
 
-屏幕负责（遥控器菜单，名称以到货后的实际菜单为准）：
+网页负责：轮播、按看得见的区域自动缩放、断网继续播放、每晚刷新、卡住自动重启、保持屏幕常亮（浏览器支持时）。
 
-1. **Configuration2 → Rotation → Portrait**（竖屏）。
-2. 连 Wi-Fi 或网线；**Advanced option → Date and time → Auto sync**。
-3. 打开内置 **Browser**，在 Settings 里把上面的地址存成第 1 个网址。
-4. **Configuration1 → Boot on source → Browser**（播放列表 1），开机直接打开菜单屏。
-5. **Configuration1 → Switch on state → Last status** 或 **Forced on**，停电恢复后自动开机。
-6. **Advanced option → Schedule**：按营业时间设置开关机。
-7. **Advanced option → IR control / Keyboard control → Lock**，避免被人乱按。
-8. **Panel saving → Pixel shift**：开启，减少长时间显示固定画面造成的残影。
+屏幕负责（遥控器；菜单路径来自 LH43/50/55/65/75/8665UHSB 说明书）：
+
+1. **HOME → Configuration 2 → System rotation → Portrait**（竖屏，说明书第 29 页）。
+2. 连 Wi-Fi 或网线；**HOME → 1668 → Settings → System → Date & time**：打开「Use network-provided time」（第 36 页）。日夜配色靠这个时钟。
+3. **HOME → 1668 → Apps → Browser**：New tab 输入上面的地址；在 Create list / Play list 里存成第 1 个网址（第 40 页）。
+4. **HOME → Configuration 1 → Boot on source → Browser**（第 28 页），开机直接打开菜单屏。
+5. **HOME → Configuration 1 → Switch on state → Last status** 或 **Forced on**（第 28 页），停电恢复后自动开机。
+6. **HOME → Advanced option → Schedule**：按营业时间设置开关机（第 30–31 页）。
+7. **HOME → Advanced option → IR control → Lock all but Power**，避免被人乱按；解锁：按住遥控器 INFO 键 6 秒（第 14、30 页）。
+8. **HOME → Configuration 1 → Panel saving → Pixel shift**：开启，减少残影（第 28 页）。
+
+### 排查用的网址开关（加在地址后面）
+
+- `?debug=1`：屏幕中间显示浏览器报告的尺寸、缩放和 Chrome 版本；红框是窗口边缘，黄色虚线框是真正看得见的区域。新屏幕装好后拍一张，就知道浏览器怎么报尺寸。
+- `?rotate=270`（屏幕顺时针转 90° 装）或 `?rotate=90`（逆时针）：屏幕竖着装、但浏览器还是横屏时，页面自己转过来铺满。浏览器已经是竖屏时这个开关不起作用，不会出错。
+- `?palette=night` 等：临时看某一种配色。
+- 多个开关用 `&` 连接，例如 `?debug=1&rotate=270`。
 
 如果内置浏览器不能全屏或不支持离线缓存，备选：在 Android 上安装 Chrome，打开地址后「添加到主屏幕」（会以全屏 App 方式打开）；或安装 Fully Kiosk Browser（付费授权，开机自启、全屏、定时刷新、远程管理）。
