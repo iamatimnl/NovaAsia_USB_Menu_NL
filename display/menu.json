@@ -1,8 +1,8 @@
 {
  "schema": "nova-display-menu-v1",
- "generated_at": "2026-10-25T03:56:55+00:00",
- "source": "nova-asia@38ed0de catalog/operations-menu-source.json (2026-10-19) + Dashboard products from www.novaasia.nl capture 2026-09-30",
- "catalog_version": "v1-000001-a2af9ee80212b2ed39a0",
+ "generated_at": "2026-10-30T19:35:17+00:00",
+ "source": "nova-asia origin/main 6c75e20 (2026-10-30)",
+ "catalog_version": "v1-000001-a90f3e79cf39bfe2c812",
  "categories": [
   {
    "id": "crispy-rice-sandwich",
