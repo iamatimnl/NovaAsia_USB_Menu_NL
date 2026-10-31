@@ -147,18 +147,6 @@
     return byId;
   }
 
-  function summary(list) {
-    var priced = list.filter(function (item) { return item.price_cents > 0; });
-    if (!priced.length) return '';
-    var fixed = priced.every(function (item) { return item.price_kind === 'fixed'; });
-    var first = priced[0].price_cents;
-    if (fixed && priced.length === list.length && priced.every(function (item) { return item.price_cents === first; })) {
-      return 'Allemaal ' + euro(first);
-    }
-    var max = Math.max.apply(null, priced.map(function (item) { return item.price_cents; }));
-    if (fixed && max < 1000) return 'Alles onder ' + euro(Math.ceil((max + 1) / 100) * 100).replace(',00', '');
-    return 'Vanaf ' + euro(Math.min.apply(null, priced.map(function (item) { return item.price_cents; })));
-  }
 
   function expand(config, menu) {
     var byId = indexItems(menu);
@@ -226,7 +214,7 @@
     });
     if (current.length) chunks.push(current);
     var heroes = slide.heroes || (slide.hero ? [slide.hero] : []);
-    var sub = slide.subtitle || summary(all);
+    var sub = slide.subtitle || ''; // only a line written in display.json; no automatic price summary (owner, 2026-10-31)
     return chunks.map(function (rows, page) {
       var heroId = heroes[page % Math.max(heroes.length, 1)];
       var hero = byId[heroId] || null;
@@ -533,5 +521,5 @@
     housekeeping();
   }).catch(showError);
 
-  window.NovaDisplay = { expand: expand, summary: summary, euro: euro, state: state, advance: advance, sunTimes: sunTimes, paletteFor: paletteFor };
+  window.NovaDisplay = { expand: expand, euro: euro, state: state, advance: advance, sunTimes: sunTimes, paletteFor: paletteFor };
 }());
