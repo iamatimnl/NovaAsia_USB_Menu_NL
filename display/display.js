@@ -13,6 +13,8 @@
   var PRELOAD_TIMEOUT_MS = 4000;
   var STORE_KEY = 'nova-display-last-good-v1';
   var preview = window.NOVA_DISPLAY_PREVIEW || null; // single-file preview build only
+  // The version this screen runs, taken from display.js?v=… in index.html (shown with ?debug=1).
+  var BUILD = ((document.currentScript && document.currentScript.src.match(/[?&]v=([^&#]+)/)) || [])[1] || 'dev';
 
   var stage = document.getElementById('stage');
   var deck = document.getElementById('deck');
@@ -76,6 +78,7 @@
         'page     ' + document.documentElement.clientWidth + ' × ' + document.documentElement.clientHeight,
         'screen   ' + screen.width + ' × ' + screen.height + '   dpr ' + window.devicePixelRatio,
         'stage    ' + stage.style.transform,
+        'build    ' + BUILD,
         (ua.match(/Chrome\/[\d.]+/) || ['Chrome/?'])[0] + '   ' + (ua.match(/Android [\d.]+/) || ['Android ?'])[0],
       ].join('\n');
     }
@@ -390,6 +393,10 @@
 
   function advance() {
     clearTimeout(state.timer);
+    if (state.reloadPending && state.index >= state.slides.length - 1) {
+      location.reload(); // a new version took over: start it at the top of the next round
+      return;
+    }
     if (state.pending && state.index >= state.slides.length - 1) {
       rebuild(state.pending);
       state.pending = null;
@@ -428,6 +435,7 @@
 
   function refresh() {
     if (preview) return;
+    if (swRegistration) swRegistration.update().catch(function () { /* offline: try again next time */ });
     loadData().then(function (data) {
       var next = JSON.stringify(data);
       var now = JSON.stringify({ config: state.config, menu: state.menu });
@@ -465,9 +473,19 @@
     });
   }
 
+  // New versions arrive by themselves: every data refresh also asks the browser to look for a new sw.js.
+  // When a new version has installed and taken over, the page reloads at the end of the round.
+  var swRegistration = null;
   function registerWorker() {
     if (preview || !('serviceWorker' in navigator) || !/^https:|^http:\/\/(localhost|127\.0\.0\.1)/.test(location.href)) return;
-    navigator.serviceWorker.register('sw.js').catch(function () {});
+    var hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!hadController) { hadController = true; return; } // first install on this screen: nothing new to show
+      state.reloadPending = true;
+    });
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
+      swRegistration = registration;
+    }).catch(function () {});
   }
 
   function showError() {
