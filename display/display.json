@@ -3,7 +3,7 @@
  "note": "Volgorde en teksten van het menuscherm. Prijzen, namen, foto's en beschikbaarheid komen uit menu.json; hier staan alleen keuzes en verkoopregels.",
  "palette": "red",
  "palette_after_dark": { "palette": "night", "lat": 52.30, "lon": 4.69, "margin_minutes": 30 },
- "durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 },
+ "durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7, "online": 10 },
  "footer": { "left": "Bestel binnen aan de kiosk", "right": "novaasia.nl" },
  "tagline": "Poké · Bento · Fried rice · Sushi & meer",
  "refresh_minutes": 10,
@@ -42,6 +42,16 @@
   },
   { "type": "list", "id": "bento", "title": "Bento", "categories": ["bento"], "hero": "japans-chicken-bento", "pair": { "prefix": "mini-", "labels": ["Normaal", "Mini"] }, "exclude": ["xbento"], "max_rows": 12, "footnote": "Vanaf-prijzen, afhankelijk van je rijstkeuze. Xbento: stel je eigen bento samen." },
   { "type": "list", "id": "ramen", "title": "Ramen", "categories": ["ramen"], "hero": "korean-chicken" },
+  {
+   "type": "online", "id": "online",
+   "kicker": "Bestel online",
+   "title": "Scan & bestel",
+   "url": "https://novaasia.nl/?ref=scherm",
+   "url_text": "novaasia.nl",
+   "qr": "assets/qr-novaasia.svg",
+   "lines": ["Kies je afhaaltijd of laat het bezorgen."],
+   "photos": ["chicken-katsu-gebakken-rijst", "salmon-roll-special", "karaage", "zalm-rice-sandwich", "dish-1af51a14b3574de9", "beef-roll-special", "flamed-zalm-bowl", "gyoza-5-st", "korean-chicken"]
+  },
   { "type": "feature", "ref": "corndog" },
   { "type": "list", "id": "snacks", "title": "Snacks", "categories": ["snack"], "heroes": ["karaage", "gyoza-5-st"] },
   {
@@ -55,6 +65,7 @@
   { "type": "list", "id": "warm", "title": "Gebakken rijst & Fusion", "categories": ["teppanyaki", "fusion-specials"], "hero": "fried-rice-beef", "max_rows": 12 },
   { "type": "list", "id": "sashimi-dessert", "title": "Sashimi & Dessert", "categories": ["sashimi", "dessert"], "hero": "flamed-salmon-sashimi", "max_rows": 12 },
   { "type": "list", "id": "drinks", "title": "Dranken", "categories": ["drinks"] },
+  { "type": "online", "ref": "online" },
   { "type": "brand", "id": "kiosk", "title": "Bestel hier binnen", "lines": ["Kies op de kiosk en betaal met pin of contant.", "Of bestel online op novaasia.nl"] }
  ]
 }

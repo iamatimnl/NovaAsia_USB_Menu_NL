@@ -187,6 +187,9 @@
         listPages(slide, byId, cats, menu).forEach(function (page) { page.seconds = seconds; pages.push(page); });
       } else if (slide.type === 'brand') {
         pages.push({ type: 'brand', seconds: seconds, slide: slide });
+      } else if (slide.type === 'online' && slide.qr) {
+        var photos = (slide.photos || []).map(function (id) { return byId[id]; }).filter(Boolean);
+        pages.push({ type: 'online', seconds: seconds, slide: slide, photos: photos });
       }
     });
     return pages;
@@ -282,6 +285,24 @@
           return '<div class="card"><div class="card__photo' + (url ? '' : ' no-photo') + '">' + img(url) + '</div>' +
             '<span class="card__name">' + esc(item.name) + '</span><span class="card__price">' + priceHTML(item) + '</span></div>';
         }).join('') + '</div>';
+    } else if (page.type === 'online') {
+      // A slowly rising wall of dish photos behind a big QR card. The wall is listed twice so it loops seamlessly.
+      var tiles = page.photos.map(function (item) {
+        var url = photoURL(item);
+        return url ? '<div class="online__tile">' + img(url) + '</div>' : '';
+      }).join('');
+      var corners = '<i class="online__corner online__corner--tl"></i><i class="online__corner online__corner--tr"></i>' +
+        '<i class="online__corner online__corner--bl"></i><i class="online__corner online__corner--br"></i>';
+      el.innerHTML = '<div class="online__wall" aria-hidden="true"><div class="online__strip">' + tiles + tiles + '</div></div>' +
+        '<div class="online__body">' +
+        '<p class="kicker">' + esc(s.kicker || '') + '</p>' +
+        '<h1 class="online__title">' + esc(s.title || '') + '</h1>' +
+        '<div class="online__card">' + corners +
+        '<img class="online__qr" src="' + esc(s.qr) + '" alt="">' +
+        '<span class="online__logo"><img src="assets/nova-asia-logo-white.png" alt=""></span></div>' +
+        (s.url_text ? '<p class="online__url">' + esc(s.url_text) + '</p>' : '') +
+        (s.lines || []).map(function (line) { return '<p class="online__line">' + esc(line) + '</p>'; }).join('') +
+        '</div>';
     } else {
       el.innerHTML = '<img class="brand__logo" src="assets/nova-asia-logo-white.png" alt="">' +
         '<h1 class="brand__title">' + esc(s.title) + '</h1>' +
