@@ -35,12 +35,18 @@
   },
   { "type": "list", "id": "poke", "title": "Pokébowl", "categories": ["pokebowl"], "heroes": ["flamed-zalm-bowl", "rainbow-bowl"], "exclude": ["x-bowl"], "footnote": "X-Bowl: stel je eigen bowl samen aan de kiosk" },
   {
+   "type": "feature", "id": "rainbow-bowl",
+   "kicker": "Pokébowl",
+   "item": "rainbow-bowl",
+   "line": "Zalm, tonijn, krabstick, masago en avocado op sushirijst."
+  },
+  { "type": "list", "id": "bento", "title": "Bento", "categories": ["bento"], "hero": "japans-chicken-bento", "pair": { "prefix": "mini-", "labels": ["Normaal", "Mini"] }, "exclude": ["xbento"], "max_rows": 12, "footnote": "Vanaf-prijzen, afhankelijk van je rijstkeuze. Xbento: stel je eigen bento samen." },
+  {
    "type": "feature", "id": "katsu-rice",
    "kicker": "Teppanyaki gebakken rijst",
    "item": "chicken-katsu-gebakken-rijst",
    "line": "Krokante chicken katsu op gebakken rijst met ei, lente-ui en zwarte peper."
   },
-  { "type": "list", "id": "bento", "title": "Bento", "categories": ["bento"], "hero": "japans-chicken-bento", "pair": { "prefix": "mini-", "labels": ["Normaal", "Mini"] }, "exclude": ["xbento"], "max_rows": 12, "footnote": "Vanaf-prijzen, afhankelijk van je rijstkeuze. Xbento: stel je eigen bento samen." },
   { "type": "list", "id": "ramen", "title": "Ramen", "categories": ["ramen"], "hero": "korean-chicken" },
   {
    "type": "online", "id": "online",
@@ -55,15 +61,33 @@
   { "type": "feature", "ref": "corndog" },
   { "type": "list", "id": "snacks", "title": "Snacks", "categories": ["snack"], "heroes": ["karaage", "gyoza-5-st"] },
   {
+   "type": "feature", "id": "karaage",
+   "kicker": "Japanse snack",
+   "item": "karaage",
+   "line": "Krokant gefrituurde Japanse kip."
+  },
+  { "type": "list", "id": "sushi", "title": "Sushi", "categories": ["sushi"], "heroes": ["salmon-roll-special", "beef-roll-special", "supernova-box"] },
+  {
+   "type": "feature", "id": "beef-roll-special",
+   "kicker": "Sushi special",
+   "item": "beef-roll-special",
+   "line": "Beef sushi roll met flamed ribeye als topping."
+  },
+  { "type": "list", "id": "warm", "title": "Gebakken rijst & Fusion", "categories": ["teppanyaki", "fusion-specials"], "hero": "fried-rice-beef", "max_rows": 12 },
+  {
    "type": "feature", "id": "nova-box",
    "kicker": "Om te delen",
    "item": "nova-box",
    "line": "44 stuks: zalm roll, tempura ebi roll, california roll, maki en nigiri."
   },
-  { "type": "list", "id": "sushi", "title": "Sushi", "categories": ["sushi"], "heroes": ["salmon-roll-special", "beef-roll-special", "supernova-box"] },
-  { "type": "feature", "ref": "sandwich" },
-  { "type": "list", "id": "warm", "title": "Gebakken rijst & Fusion", "categories": ["teppanyaki", "fusion-specials"], "hero": "fried-rice-beef", "max_rows": 12 },
   { "type": "list", "id": "sashimi-dessert", "title": "Sashimi & Dessert", "categories": ["sashimi", "dessert"], "hero": "flamed-salmon-sashimi", "max_rows": 12 },
+  {
+   "type": "feature", "id": "gyoza",
+   "kicker": "Japanse snack",
+   "title": "Gyoza",
+   "item": "gyoza-5-st",
+   "line": "Japanse dumplings · 5 stuks."
+  },
   { "type": "list", "id": "drinks", "title": "Dranken", "categories": ["drinks"] },
   { "type": "online", "ref": "online" },
   { "type": "brand", "id": "kiosk", "title": "Bestel hier binnen", "lines": ["Kies op de kiosk en betaal met pin of contant.", "Of bestel online op novaasia.nl"] }
