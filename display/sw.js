@@ -3,8 +3,8 @@
    - display.json / menu.json: network first, last good copy when offline.
    - Dish photos and fonts (other hosts): cache first, so after one full round the
      screen keeps showing everything without internet. */
-var VERSION = 'nova-display-20261031-10';
-var SHELL = ['./', 'index.html', 'display.css?v=20261031-10', 'display.js?v=20261031-10', 'display.json', 'menu.json',
+var VERSION = 'nova-display-20261031-11';
+var SHELL = ['./', 'index.html', 'display.css?v=20261031-11', 'display.js?v=20261031-11', 'display.json', 'menu.json',
   'manifest.webmanifest', 'assets/nova-asia-logo-white.png', 'assets/qr-novaasia.svg', 'assets/fonts/archivo-variable-latin.woff2'];
 
 self.addEventListener('install', function (event) {
