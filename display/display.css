@@ -20,7 +20,10 @@
   --variant-line: #164b3c; --variant-fill: rgba(255, 255, 255, .04); --variant-price: #f1bd55; --no-photo: #164b3c;
   --list-bg: #f7f4ed; --list-fg: #102b24; --list-accent: #1f6a53; --list-muted: #5b6b64; --rule: #ddd8c9;
   --caption-bg: rgba(16, 43, 36, .86); --caption-fg: #ffffff;
-  --image-ground: #f3f3f3; /* behind dish photos, as on the website */
+  /* Behind dish photos; shows through cut-out photos (transparent background). Light on light list pages,
+     as on the website; on dark pages a dark spotlight, so cut-outs float instead of sitting on a white card. */
+  --image-ground: #f3f3f3;
+  --feature-photo-ground: radial-gradient(ellipse 75% 60% at 50% 45%, #1e4436 0%, #102b24 72%);
   --font: "Archivo", "Roboto", Arial, Helvetica, sans-serif;
   --display-stretch: 112%;
   color-scheme: light;
@@ -33,6 +36,8 @@
   --variant-line: #3d3a36; --variant-fill: rgba(255, 255, 255, .04); --variant-price: #ff9c90; --no-photo: #3d3a36;
   --list-bg: #f7f6f2; --list-fg: #242a26; --list-accent: #b93830; --list-muted: #62695f; --rule: #e4e5dd;
   --caption-bg: rgba(28, 29, 27, .86); --caption-fg: #ffffff;
+  --image-ground: #f3f3f3;
+  --feature-photo-ground: radial-gradient(ellipse 75% 60% at 50% 45%, #363731 0%, #1c1d1b 72%);
 }
 [data-palette="night"] {
   --chrome-bg: #120c0a; --chrome-fg: #fff4e6; --chrome-accent: #ffb347;
@@ -42,6 +47,8 @@
   --variant-line: #4a2e1f; --variant-fill: rgba(255, 138, 42, .06); --variant-price: #ffb347; --no-photo: #3a2418;
   --list-bg: #221712; --list-fg: #fff4e6; --list-accent: #ffb347; --list-muted: #c9a98d; --rule: #4a2e1f;
   --caption-bg: rgba(18, 12, 10, .86); --caption-fg: #fff4e6;
+  --image-ground: radial-gradient(ellipse 80% 70% at 50% 45%, #3a261b 0%, #221712 75%);
+  --feature-photo-ground: radial-gradient(ellipse 75% 60% at 50% 45%, #3a261b 0%, #1b120e 72%);
   color-scheme: dark;
 }
 [data-palette="washi"] {
@@ -52,6 +59,8 @@
   --variant-line: #e1d8c8; --variant-fill: #fffdf8; --variant-price: #b93830; --no-photo: #e8e1d3;
   --list-bg: #fbf8f2; --list-fg: #1b1a17; --list-accent: #b93830; --list-muted: #6b6459; --rule: #e6dfd1;
   --caption-bg: rgba(27, 26, 23, .86); --caption-fg: #ffffff;
+  --image-ground: #f3f3f3;
+  --feature-photo-ground: #f3f3f3;
 }
 
 * { box-sizing: border-box; }
@@ -108,7 +117,7 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 /* ---------- Feature: one dish, big photo ---------- */
 .slide--feature { background: var(--feature-bg); color: var(--feature-fg); }
 .slide--brand { background: var(--chrome-bg); color: var(--chrome-fg); }
-.feature__photo { position: relative; flex: none; height: 930px; background: var(--image-ground); overflow: hidden; }
+.feature__photo { position: relative; flex: none; height: 930px; background: var(--feature-photo-ground); overflow: hidden; }
 .feature__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .slide--feature.is-active .feature__photo img { animation: drift var(--slide-ms, 9000ms) linear forwards; }
 .feature__photo::after { content: ""; position: absolute; inset: auto 0 0; height: 220px; background: linear-gradient(to bottom, var(--feature-fade), var(--feature-bg)); }
@@ -140,13 +149,14 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 .list__title { margin: 0; font-size: 96px; line-height: 1; font-weight: 850; font-stretch: var(--display-stretch); letter-spacing: -.01em; }
 .list__sub { margin: 10px 0 0; color: var(--list-accent); font-size: 40px; font-weight: 800; }
 .list__page { color: var(--list-accent); font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; padding-bottom: 10px; white-space: nowrap; }
-.list__hero { position: relative; flex: none; height: var(--hero-h, 500px); margin: 0 56px; border-radius: 30px; overflow: hidden; background: var(--image-ground); }
+/* The photo takes the room the rows leave free (at least --hero-h), so short lists get a big photo. */
+.list__hero { position: relative; flex: 1 0 var(--hero-h, 500px); margin: 0 56px; border-radius: 30px; overflow: hidden; background: var(--image-ground); }
 .list__hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .list__hero figcaption {
   position: absolute; left: 22px; bottom: 22px; padding: 10px 22px; border-radius: 18px;
   background: var(--caption-bg); color: var(--caption-fg); font-size: 30px; font-weight: 700;
 }
-.list__rows { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-start; padding: 22px 56px 30px; font-size: var(--row-size, 44px); }
+.list__rows { flex: 0 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: flex-start; padding: 22px 56px 30px; font-size: var(--row-size, 44px); }
 .row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; column-gap: 28px; padding: .36em 0; border-bottom: 2px solid var(--rule); }
 .row--pair { grid-template-columns: 1fr 4.4em 4.4em; column-gap: 20px; }
 .row__name { font-weight: 650; line-height: 1.12; }

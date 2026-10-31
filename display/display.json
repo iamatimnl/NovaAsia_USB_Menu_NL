@@ -50,7 +50,7 @@
    "item": "nova-box",
    "line": "44 stuks: zalm roll, tempura ebi roll, california roll, maki en nigiri."
   },
-  { "type": "list", "id": "sushi", "title": "Sushi", "categories": ["sushi"], "heroes": ["salmon-roll", "dragon-roll", "crispy-box"] },
+  { "type": "list", "id": "sushi", "title": "Sushi", "categories": ["sushi"], "heroes": ["salmon-roll-special", "beef-roll-special", "supernova-box"] },
   { "type": "feature", "ref": "sandwich" },
   { "type": "list", "id": "warm", "title": "Gebakken rijst & Fusion", "categories": ["teppanyaki", "fusion-specials"], "hero": "fried-rice-beef", "max_rows": 12 },
   { "type": "list", "id": "sashimi-dessert", "title": "Sashimi & Dessert", "categories": ["sashimi", "dessert"], "hero": "flamed-salmon-sashimi", "max_rows": 12 },
