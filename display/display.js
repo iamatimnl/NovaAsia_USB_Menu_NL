@@ -1,6 +1,7 @@
 /* Nova Asia menu screen engine.
-   Reads display.json (what to show, in which order) and menu.json (names, prices, photos,
-   availability — the same menu the kiosk sells), builds the pages and plays them on a loop.
+   Reads display.json (what to show, in which order) and the live menu from the website (names, prices,
+   photos, sold out — the same menu the Dashboard edits and the kiosk sells; menu.json is the reserve),
+   builds the pages and plays them on a loop.
    No interaction. Survives lost network (last good data + cached photos), reloads itself
    once a night, and restarts if it ever stops advancing. */
 (function () {
@@ -12,6 +13,9 @@
   var FADE_MS = 900;
   var PRELOAD_TIMEOUT_MS = 4000;
   var STORE_KEY = 'nova-display-last-good-v1';
+  var LIVE_KEY = 'nova-display-live-menu-v1';
+  var FEED_TIMEOUT_MS = 15000;
+  var MIN_LIVE_ITEMS = 10; // a feed with fewer dishes is treated as broken, not as the menu
   var preview = window.NOVA_DISPLAY_PREVIEW || null; // single-file preview build only
   // The version this screen runs, taken from display.js?v=… in index.html (shown with ?debug=1).
   var BUILD = ((document.currentScript && document.currentScript.src.match(/[?&]v=([^&#]+)/)) || [])[1] || 'dev';
@@ -20,6 +24,7 @@
   var deck = document.getElementById('deck');
   var bar = document.getElementById('progress');
   var state = { config: null, menu: null, slides: [], index: -1, timer: null, pending: null, lastAdvance: Date.now(), bootedAt: Date.now() };
+  var menuSource = { kind: 'snapshot', at: null }; // where the menu came from (?debug=1); not part of what is compared
 
   // ---------- layout ----------
   // ?rotate=270 (screen turned clockwise) or ?rotate=90 (turned counter-clockwise): for a screen mounted
@@ -48,6 +53,12 @@
     }
   }
 
+  // A time for the debug panel: 10:07 today, 2026-11-09 22:40 for another day.
+  function when(ms) {
+    var d = new Date(ms);
+    var time = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    return d.toDateString() === new Date().toDateString() ? time : d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + ' ' + time;
+  }
   // ?debug=1: the browser's own sizes on screen, a red frame on the window edges and a yellow frame on
   // the visible area. For setting up a new screen; a photo of it shows what the browser reports.
   function showDebug() {
@@ -79,6 +90,8 @@
         'screen   ' + screen.width + ' × ' + screen.height + '   dpr ' + window.devicePixelRatio,
         'stage    ' + stage.style.transform,
         'build    ' + BUILD,
+        'menu     ' + menuSource.kind + (menuSource.at ? '   ' + when(menuSource.at) : '') +
+          (state.menu ? '   ' + state.menu.items.length + ' dishes' : ''),
         (ua.match(/Chrome\/[\d.]+/) || ['Chrome/?'])[0] + '   ' + (ua.match(/Android [\d.]+/) || ['Android ?'])[0],
       ].join('\n');
     }
@@ -99,21 +112,85 @@
       return response.json();
     });
   }
+  // The live menu: the website's read-only feed (display.json "menu_feed"), the same menu the Dashboard
+  // edits and the Kiosk sells, with today's sold-out state. Priced with the Kiosk's own view model
+  // (vendor/kiosk), so "vanaf" prices match the Kiosk. Sold-out dishes and options are left out by it.
+  // If the feed cannot be read: the last live copy, else the menu.json snapshot in this repo.
+  function liveMenu(url) {
+    if (!url || !/^https:\/\//.test(url) || !window.KioskCatalogViewModel) return Promise.reject(new Error('no live menu'));
+    var controller = window.AbortController ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, FEED_TIMEOUT_MS) : null;
+    var done = function () { clearTimeout(timer); };
+    return fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller ? controller.signal : undefined })
+      .then(function (response) {
+        if (!response.ok) throw new Error('menu feed ' + response.status);
+        return response.json();
+      })
+      .then(function (feed) { done(); return fromFeed(feed); }, function (error) { done(); throw error; });
+  }
+  function fromFeed(feed) {
+    if (!feed || feed.schema !== 'nova-menu-projection-v1' || !Array.isArray(feed.items) || !Array.isArray(feed.categories)) {
+      throw new Error('not a menu feed');
+    }
+    var vm = window.KioskCatalogViewModel.normalize(feed);
+    var items = (vm.menu_items || []).map(function (item) {
+      var cents = item.display_price_cents;
+      return {
+        id: item.id,
+        name: String(item.name || '').replace(/\s+/g, ' ').trim(),
+        description: String(item.description || '').trim(),
+        category: item.category_id,
+        price_cents: cents,
+        price_kind: item.price_kind === 'from' && !cents ? 'build' : item.price_kind,
+        image: item.image_url || null,
+        available: item.kiosk_saleable !== false,
+      };
+    });
+    if (items.length < MIN_LIVE_ITEMS) throw new Error('menu feed has only ' + items.length + ' dishes');
+    var categories = feed.categories.slice().sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+      .map(function (category) { return { id: category.category_id, name: category.category_name }; });
+    return { schema: 'nova-display-menu-v1', catalog_version: feed.catalog_version, categories: categories, items: items };
+  }
+  function readLive() {
+    try { return JSON.parse(localStorage.getItem(LIVE_KEY) || 'null'); } catch (_) { return null; }
+  }
+  function writeLive(menu, at) {
+    try { localStorage.setItem(LIVE_KEY, JSON.stringify({ at: at, menu: menu })); } catch (_) { /* blocked: snapshot stays the fallback */ }
+  }
+  function loadMenu(config) {
+    return liveMenu(config.menu_feed).then(function (menu) {
+      var at = Date.now();
+      writeLive(menu, at);
+      return { menu: menu, source: { kind: 'live', at: at } };
+    }).catch(function () {
+      var saved = readLive();
+      if (saved && saved.menu && Array.isArray(saved.menu.items)) return { menu: saved.menu, source: { kind: 'last-live', at: saved.at } };
+      return fetchJSON('menu.json').then(function (menu) { return { menu: menu, source: { kind: 'snapshot', at: null } }; });
+    });
+  }
   function loadData() {
     if (preview && preview.config) return Promise.resolve({ config: preview.config, menu: preview.menu });
-    return Promise.all([fetchJSON('display.json'), fetchJSON('menu.json')]).then(function (pair) {
-      var data = { config: pair[0], menu: pair[1] };
-      if (!valid(data)) throw new Error('invalid display data');
-      writeStore(data);
-      return data;
+    return fetchJSON('display.json').then(function (config) {
+      return loadMenu(config).then(function (picked) {
+        var data = { config: config, menu: picked.menu };
+        if (!valid(data)) throw new Error('invalid display data');
+        menuSource = picked.source;
+        writeStore(data);
+        return data;
+      });
     }).catch(function () {
       var saved = readStore();
-      if (saved && valid(saved)) return saved;
+      if (saved && valid(saved)) { menuSource = { kind: 'stored', at: null }; return saved; }
       throw new Error('no display data available');
     });
   }
   function valid(data) {
     return data && data.config && Array.isArray(data.config.slides) && data.menu && Array.isArray(data.menu.items);
+  }
+  // What the screen shows; leaves out fields that change on every read, so an unchanged menu
+  // does not rebuild the pages.
+  function signature(data) {
+    return JSON.stringify({ config: data.config, categories: data.menu && data.menu.categories, items: data.menu && data.menu.items });
   }
 
   // ---------- money and words ----------
@@ -446,9 +523,7 @@
     if (preview) return;
     if (swRegistration) swRegistration.update().catch(function () { /* offline: try again next time */ });
     loadData().then(function (data) {
-      var next = JSON.stringify(data);
-      var now = JSON.stringify({ config: state.config, menu: state.menu });
-      if (next !== now) state.pending = data; // applied at the start of the next round
+      if (signature(data) !== signature({ config: state.config, menu: state.menu })) state.pending = data; // applied at the start of the next round
     }).catch(function () { /* offline: keep playing what we have */ });
   }
 
@@ -521,5 +596,6 @@
     housekeeping();
   }).catch(showError);
 
-  window.NovaDisplay = { expand: expand, euro: euro, state: state, advance: advance, sunTimes: sunTimes, paletteFor: paletteFor };
+  window.NovaDisplay = { expand: expand, euro: euro, state: state, advance: advance, refresh: refresh, sunTimes: sunTimes, paletteFor: paletteFor,
+    fromFeed: fromFeed, source: function () { return menuSource; } };
 }());

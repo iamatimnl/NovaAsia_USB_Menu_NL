@@ -4,7 +4,8 @@
 
 - 竖屏 1080×1920 布局，按屏幕大小自动缩放（4K 竖屏、1080p 竖屏都一样）。
 - 自动轮播，不需要触摸，没有购物车或结账。
-- 价格、名称、照片、是否在售来自 `menu.json`；页面顺序和荷兰语卖点来自 `display.json`。
+- 价格、名称、照片、售罄每 10 分钟从网站实时读取（和 Dashboard、Kiosk 是同一份菜单）；页面顺序和荷兰语卖点来自 `display.json`。
+- 网站读不到时用上一次读到的菜单；从来没读到过时用 `menu.json` 快照。
 - 断网后继续播放最后一次成功的菜单和已缓存的照片；每晚自动刷新一次；卡住会自动重启。
 
 ## 文件
@@ -12,7 +13,8 @@
 | 文件 | 作用 | 谁改 |
 | --- | --- | --- |
 | `display.json` | 播放顺序、每页秒数、特写商品和卖点文字、底部文字 | 店主可直接改 |
-| `menu.json` | 菜单快照：名称、价格（含 Vanaf）、照片地址、是否在售 | 由 `tools/build_menu_snapshot.py` 生成，不手改 |
+| `menu.json` | 备用菜单快照（网站读不到、屏幕上也没有上一次的菜单时才用） | 由 `tools/build_menu_snapshot.py` 生成，不手改 |
+| `vendor/kiosk/` | Kiosk 的价格计算程序，原样复制（来源和更新方法见 `SOURCE.txt`） | 不手改 |
 | `index.html` `display.css` `display.js` | 页面和播放程序 | 开发 |
 | `sw.js` `manifest.webmanifest` | 离线缓存、全屏安装 | 开发 |
 | `assets/` | 白色标志、Archivo 字体（SIL OFL 开源授权） | — |
@@ -31,11 +33,21 @@
 - 改停留时间：`"durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 }`（秒）。
 - 换特写商品：复制一个 `"type": "feature"` 段，改 `item`（商品 ID 见 `menu.json`）、`kicker`、`line`。
 - 一个特写想多播一次：加 `{ "type": "feature", "ref": "<那一段的 id>" }`。
-- 商品下架或售罄（`menu.json` 里 `available: false`）会自动不显示；整页没有商品时整页跳过。
+- 商品下架或售罄（在 Dashboard 里设置）最多约 10 分钟后自动不显示，等当前这一轮播完才换；整页没有商品时整页跳过。
+- `"menu_feed"`：实时菜单的地址（`https://www.novaasia.nl/api/menu/display`）。删掉这一行就只用 `menu.json` 快照。`"refresh_minutes"` 是多久读一次（10）。
 
-## 更新菜单（现在的做法）
+## 实时菜单（2026-11-10 起）
 
-在三个仓库并排放置的电脑上运行：
+- 屏幕每 `refresh_minutes`（10）分钟读一次网站的 `/api/menu/display`：网站 `/menu` 页和 Kiosk 用的同一份菜单，带当天的售罄。只读，不能下单。
+- 价格用 `vendor/kiosk/` 里 Kiosk 自己的计算程序算，所以「Vanaf」价格和 Kiosk 一样；售罄的商品和选项（例如某一种卷）由它直接去掉，最低价选项售罄时「Vanaf」会跟着变。
+- 内容没变就不重建页面；变了就在这一轮播完后换上。
+- 读不到（断网、网站维护、超过 15 秒没回应、内容明显不对）：继续用上一次读到的菜单，下次再试。
+- `?debug=1` 里的 `menu` 一行显示菜单来源：`live`（刚从网站读到，后面是时间和商品数）、`last-live`（网站读不到，用的是上一次读到的，后面是那次的时间）、`snapshot`（用 `menu.json`）、`stored`（连 `display.json` 也读不到，用屏幕上存着的上一份）。
+- Kiosk 程序更新价格规则后，按 `vendor/kiosk/SOURCE.txt` 重新复制这四个文件，改 `index.html`/`sw.js` 的版本号后发布。
+
+## 更新备用快照 menu.json
+
+平时不需要。在三个仓库并排放置的电脑上运行：
 
 ```bash
 python3 tools/build_menu_snapshot.py \

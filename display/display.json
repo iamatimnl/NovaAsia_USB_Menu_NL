@@ -1,6 +1,7 @@
 {
  "schema": "nova-display-playlist-v1",
- "note": "Volgorde en teksten van het menuscherm. Prijzen, namen, foto's en beschikbaarheid komen uit menu.json; hier staan alleen keuzes en verkoopregels.",
+ "note": "Volgorde en teksten van het menuscherm. Prijzen, namen, foto's en uitverkocht komen live van de website (menu_feed, elke refresh_minutes); menu.json is de reserve. Hier staan alleen keuzes en verkoopregels.",
+ "menu_feed": "https://www.novaasia.nl/api/menu/display",
  "palette": "red",
  "palette_after_dark": { "palette": "night", "lat": 52.30, "lon": 4.69, "margin_minutes": 30 },
  "durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7, "online": 10 },
