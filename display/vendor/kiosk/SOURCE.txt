@@ -1,0 +1,8 @@
+Copied unchanged from iamatimnl/Nova-Asia-Kiosk static/kiosk/js/ at commit 54a763c331dd374a0aabfb5da15624cc4cd8bdb9 (2026-10-30).
+The menu screen prices the live menu with these, exactly as the Kiosk does. Do not edit here; to update:
+  cp ../nova-asia-kiosk/static/kiosk/js/{supplies-reference,supplies-policy,options,catalog-view-model}.js display/vendor/kiosk/
+
+d6d5e0f761c10ac355595ce8f6f07ecb296e5bbac6889fc46e3380038b6e19f2  supplies-reference.js
+da09ef9e6583c07a9099ebfbe7b786349f6bc21cf0b65a00f19bd486a97d5ea5  supplies-policy.js
+107421470877858b6793abed9e2f8084e11e8a877b8ef84f99f3d3f25d3d4c7a  options.js
+c6cb4c02715ae4dcbc162ebc55c7a2e07cd924e687cb7aacf2617708246cfb68  catalog-view-model.js
