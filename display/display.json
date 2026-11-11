@@ -49,6 +49,7 @@
    "line": "Krokante chicken katsu op gebakken rijst met ei, lente-ui en zwarte peper."
   },
   { "type": "list", "id": "ramen", "title": "Ramen", "categories": ["ramen"], "hero": "korean-chicken" },
+  { "type": "video", "id": "promo", "src": "assets/video/nova-asia-promo-v8.mp4" },
   {
    "type": "online", "id": "online",
    "kicker": "Bestel online",
@@ -90,6 +91,7 @@
    "line": "Japanse dumplings · 5 stuks."
   },
   { "type": "list", "id": "drinks", "title": "Dranken", "categories": ["drinks"] },
+  { "type": "video", "ref": "promo" },
   { "type": "online", "ref": "online" },
   { "type": "brand", "id": "kiosk", "title": "Bestel hier binnen", "lines": ["Kies op de kiosk en betaal met pin of contant.", "Of bestel online op novaasia.nl"] }
  ]

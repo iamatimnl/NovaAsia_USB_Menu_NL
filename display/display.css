@@ -114,6 +114,10 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; user-selec
 }
 .slide.is-active { opacity: 1; }
 
+/* ---------- Video: a short clip over the whole screen, masthead and footer included ---------- */
+.slide--video { z-index: 5; background: #000; }
+.video__clip { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+
 /* ---------- Feature: one dish, big photo ---------- */
 .slide--feature { background: var(--feature-bg); color: var(--feature-fg); }
 .slide--brand { background: var(--chrome-bg); color: var(--chrome-fg); }

@@ -31,6 +31,10 @@
 - 顶栏右边的介绍文字：`"tagline": "Poké · Bento · Fried rice · Sushi & meer"`。现在这一行刚好放满，不要再加长；要加词就写成两行：`["第一行", "第二行"]`。
 - 「扫码点餐」页（`"type": "online"`）：大二维码通往自家网站，背景是慢慢上移的菜品照片。`url` 是二维码地址（现在 `https://novaasia.nl/?ref=scherm`，`ref=scherm` 用来以后在网站日志里认出是从屏幕扫进来的），`photos` 是背景用的菜品 ID。改了 `url` 之后要重新生成二维码：`pip install segno && python3 tools/make_qr.py`。想多播一次就加 `{ "type": "online", "ref": "online" }`。
 - 改停留时间：`"durations": { "feature": 9, "list": 11, "grid": 11, "brand": 7 }`（秒）。
+- 视频页（`"type": "video"`）：`src` 是 `assets/video/` 里的 MP4，全屏播放（盖住顶栏和底栏），播完一遍自动换下一页。现在是 `assets/video/nova-asia-promo-v8.mp4`（25 秒，11 个菜单分类），每轮两次，都在「扫码点餐」页前面。
+  - 视频要求：1080×1920 竖屏、MP4（H.264）、不要声音、最长 50 秒（更长的会在 50 秒处切掉）。
+  - 换新版本：把新文件放进 `assets/video/`，换个文件名（如 `…-v9.mp4`），改 `display.json` 里的 `src`，再发布。旧文件可以删掉。
+  - 屏幕会先把整个视频下载好再播，离线也能播；还没下载好、文件不在或屏幕不能播时，这一页自动跳过。`?debug=1` 的 `video` 一行显示状态（`ready` / `loading` / `failed` 和原因）和播了几次。
 - 换特写商品：复制一个 `"type": "feature"` 段，改 `item`（商品 ID 见 `menu.json`）、`kicker`、`line`。
 - 一个特写想多播一次：加 `{ "type": "feature", "ref": "<那一段的 id>" }`。
 - 商品下架或售罄（在 Dashboard 里设置）最多约 10 分钟后自动不显示，等当前这一轮播完才换；整页没有商品时整页跳过。

@@ -2,7 +2,8 @@
    Reads display.json (what to show, in which order) and the live menu from the website (names, prices,
    photos, sold out — the same menu the Dashboard edits and the kiosk sells; menu.json is the reserve),
    builds the pages and plays them on a loop.
-   No interaction. Survives lost network (last good data + cached photos), reloads itself
+   Video pages play a short silent clip full screen, once, then move on.
+   No interaction. Survives lost network (last good data + cached photos and clips), reloads itself
    once a night, and restarts if it ever stops advancing. */
 (function () {
   'use strict';
@@ -16,6 +17,7 @@
   var LIVE_KEY = 'nova-display-live-menu-v1';
   var FEED_TIMEOUT_MS = 15000;
   var MIN_LIVE_ITEMS = 10; // a feed with fewer dishes is treated as broken, not as the menu
+  var VIDEO_MAX_SECONDS = 50; // a longer clip is cut off here (the stall check restarts the page after 60 s)
   var preview = window.NOVA_DISPLAY_PREVIEW || null; // single-file preview build only
   // The version this screen runs, taken from display.js?v=… in index.html (shown with ?debug=1).
   var BUILD = ((document.currentScript && document.currentScript.src.match(/[?&]v=([^&#]+)/)) || [])[1] || 'dev';
@@ -25,6 +27,7 @@
   var bar = document.getElementById('progress');
   var state = { config: null, menu: null, slides: [], index: -1, timer: null, pending: null, lastAdvance: Date.now(), bootedAt: Date.now() };
   var menuSource = { kind: 'snapshot', at: null }; // where the menu came from (?debug=1); not part of what is compared
+  var videos = {}; // clip path -> { status: loading | ready | failed, url, reason, plays }
 
   // ---------- layout ----------
   // ?rotate=270 (screen turned clockwise) or ?rotate=90 (turned counter-clockwise): for a screen mounted
@@ -92,6 +95,10 @@
         'build    ' + BUILD,
         'menu     ' + menuSource.kind + (menuSource.at ? '   ' + when(menuSource.at) : '') +
           (state.menu ? '   ' + state.menu.items.length + ' dishes' : ''),
+        'video    ' + (Object.keys(videos).map(function (src) {
+          var v = videos[src];
+          return src.split('/').pop() + ' ' + v.status + (v.reason ? ' (' + v.reason + ')' : '') + (v.plays ? '   played ' + v.plays : '');
+        }).join('; ') || 'none'),
         (ua.match(/Chrome\/[\d.]+/) || ['Chrome/?'])[0] + '   ' + (ua.match(/Android [\d.]+/) || ['Android ?'])[0],
       ].join('\n');
     }
@@ -255,10 +262,15 @@
       } else if (slide.type === 'online' && slide.qr) {
         var photos = (slide.photos || []).map(function (id) { return byId[id]; }).filter(Boolean);
         pages.push({ type: 'online', seconds: seconds, slide: slide, photos: photos });
+      } else if (slide.type === 'video' && VIDEO_PATH.test(slide.src || '')) {
+        // seconds: only until the clip's own length is known (it plays to its end, at most VIDEO_MAX_SECONDS)
+        pages.push({ type: 'video', seconds: Math.min(slide.seconds || durations.video || 15, VIDEO_MAX_SECONDS), slide: slide, src: slide.src });
       }
     });
     return pages;
   }
+
+  var VIDEO_PATH = /^assets\/video\/[\w.-]+\.mp4$/; // clips live in this repo, next to the page
 
   // A list slide may span several categories (each gets a small label) and is split into pages of MAX_ROWS.
   function listPages(slide, byId, cats, menu) {
@@ -368,6 +380,13 @@
         (s.url_text ? '<p class="online__url">' + esc(s.url_text) + '</p>' : '') +
         (s.lines || []).map(function (line) { return '<p class="online__line">' + esc(line) + '</p>'; }).join('') +
         '</div>';
+    } else if (page.type === 'video') {
+      var video = document.createElement('video');
+      video.className = 'video__clip';
+      video.muted = true; video.defaultMuted = true; video.playsInline = true; video.preload = 'auto';
+      video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
+      video.src = videos[page.src].url;
+      el.appendChild(video);
     } else {
       el.innerHTML = '<img class="brand__logo" src="assets/nova-asia-logo-white.png" alt="">' +
         '<h1 class="brand__title">' + esc(s.title) + '</h1>' +
@@ -403,6 +422,87 @@
       var limit = new Promise(function (resolve) { setTimeout(resolve, PRELOAD_TIMEOUT_MS); });
       return Promise.race([done, limit]);
     }));
+  }
+
+  // ---------- video ----------
+  // A clip is downloaded whole first (sw.js keeps it for offline) and played from memory, so it never
+  // starts half-loaded or stutters on a slow line. Until it is ready, or if this screen cannot play it,
+  // its page is skipped. A failed download is tried again at the next data refresh.
+  function loadVideos(pages) {
+    var wanted = {};
+    pages.forEach(function (page) { if (page.type === 'video') wanted[page.src] = true; });
+    Object.keys(wanted).forEach(function (src) {
+      var entry = videos[src];
+      if (entry && (entry.status !== 'failed' || entry.final)) return;
+      entry = videos[src] = { status: 'loading', url: null, reason: '', plays: entry ? entry.plays : 0 };
+      var probe = document.createElement('video');
+      if (!probe.canPlayType || !probe.canPlayType('video/mp4')) {
+        entry.status = 'failed'; entry.final = true; entry.reason = 'mp4 not supported';
+        return;
+      }
+      fetch(src).then(function (response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.blob();
+      }).then(function (blob) {
+        if (!blob.size) throw new Error('empty file');
+        entry.url = URL.createObjectURL(blob);
+        entry.status = 'ready';
+      }).catch(function (error) {
+        entry.status = 'failed';
+        entry.reason = String((error && error.message) || error);
+      });
+    });
+    Object.keys(videos).forEach(function (src) { // clips no longer in the playlist
+      if (wanted[src]) return;
+      if (videos[src].url) URL.revokeObjectURL(videos[src].url);
+      delete videos[src];
+    });
+  }
+  function videoReady(page) {
+    return !!(videos[page.src] && videos[page.src].status === 'ready');
+  }
+  function videoFailed(page, reason) {
+    var entry = videos[page.src];
+    if (!entry) return;
+    entry.status = 'failed'; entry.final = true; entry.reason = reason; // this screen cannot play it: skip until restart
+  }
+  // Wait until the first frame is there (with a time limit). False: the clip cannot be shown.
+  function preloadVideo(el) {
+    var video = el.querySelector('video');
+    return new Promise(function (resolve) {
+      if (video.readyState >= 2) return resolve(true);
+      var timer = setTimeout(function () { resolve(false); }, PRELOAD_TIMEOUT_MS);
+      video.addEventListener('loadeddata', function () { clearTimeout(timer); resolve(true); }, { once: true });
+      video.addEventListener('error', function () { clearTimeout(timer); resolve(false); }, { once: true });
+    });
+  }
+  // Free the screen's video decoder as soon as a clip is off screen.
+  function releaseMedia(node) {
+    var video = node.querySelector && node.querySelector('video');
+    if (!video) return;
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  }
+  function playVideo(el, page) {
+    var video = el.querySelector('video');
+    var length = isFinite(video.duration) && video.duration > 0 ? video.duration : page.seconds;
+    var seconds = Math.min(length, VIDEO_MAX_SECONDS);
+    var done = false;
+    var next = function () {
+      if (done) return;
+      done = true;
+      advance();
+    };
+    video.addEventListener('ended', next, { once: true });
+    var started = video.play();
+    if (started && started.catch) {
+      started.catch(function (error) { videoFailed(page, 'play: ' + ((error && error.name) || error)); next(); });
+    }
+    videos[page.src].plays += 1;
+    runProgress(seconds * 1000);
+    state.lastAdvance = Date.now();
+    state.timer = setTimeout(next, seconds * 1000 + (length > VIDEO_MAX_SECONDS ? 0 : 1500)); // in case "ended" never comes
   }
 
   // ---------- colours: day palette, and an after-dark palette from sunset to sunrise ----------
@@ -462,6 +562,7 @@
     state.config = data.config;
     state.menu = data.menu;
     state.slides = expand(data.config, data.menu);
+    loadVideos(state.slides);
     var footer = data.config.footer || {};
     if (footer.left) document.getElementById('footer-left').textContent = footer.left;
     if (footer.right) document.getElementById('footer-right').textContent = footer.right;
@@ -491,21 +592,36 @@
     if (!state.slides.length) return;
     state.index = (state.index + 1) % state.slides.length;
     var page = state.slides[state.index];
+    if (page.type === 'video' && !videoReady(page)) { // not downloaded yet, or cannot play here: skip it
+      state.skips = (state.skips || 0) + 1;
+      if (state.skips <= state.slides.length) return advance();
+      state.skips = 0;
+      state.timer = setTimeout(advance, 5000); // nothing else to show: look again shortly
+      return;
+    }
+    state.skips = 0;
     var el = render(page);
     var palette = currentPalette();
     el.setAttribute('data-palette', palette);
     el.setAttribute('aria-hidden', 'true');
-    deck.appendChild(el);
+    (page.type === 'video' ? stage : deck).appendChild(el); // a clip covers the masthead and footer too
     fitRows(el);
-    preload(el).then(function () {
-      var old = Array.prototype.slice.call(deck.querySelectorAll('.slide.is-active'));
+    (page.type === 'video' ? preloadVideo(el) : preload(el)).then(function (ok) {
+      if (ok === false) { // the clip did not load: leave the current page up and go on
+        videoFailed(page, 'no picture');
+        releaseMedia(el);
+        el.remove();
+        return advance();
+      }
+      var old = Array.prototype.slice.call(stage.querySelectorAll('.slide.is-active'));
       el.getBoundingClientRect();
       applyPalette(palette);
       el.classList.add('is-active');
       old.forEach(function (node) {
         node.classList.remove('is-active');
-        setTimeout(function () { node.remove(); }, FADE_MS + 100);
+        setTimeout(function () { releaseMedia(node); node.remove(); }, FADE_MS + 100);
       });
+      if (page.type === 'video') return playVideo(el, page);
       runProgress(page.seconds * 1000);
       state.lastAdvance = Date.now();
       state.timer = setTimeout(advance, page.seconds * 1000);
@@ -522,6 +638,7 @@
   function refresh() {
     if (preview) return;
     if (swRegistration) swRegistration.update().catch(function () { /* offline: try again next time */ });
+    loadVideos(state.slides); // a clip that failed to download is tried again
     loadData().then(function (data) {
       if (signature(data) !== signature({ config: state.config, menu: state.menu })) state.pending = data; // applied at the start of the next round
     }).catch(function () { /* offline: keep playing what we have */ });
@@ -597,5 +714,5 @@
   }).catch(showError);
 
   window.NovaDisplay = { expand: expand, euro: euro, state: state, advance: advance, refresh: refresh, sunTimes: sunTimes, paletteFor: paletteFor,
-    fromFeed: fromFeed, source: function () { return menuSource; } };
+    fromFeed: fromFeed, source: function () { return menuSource; }, videos: videos };
 }());
