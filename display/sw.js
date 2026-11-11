@@ -3,12 +3,13 @@
    - display.json / menu.json: network first, last good copy when offline.
    - The live menu (www.novaasia.nl) is not touched here: display.js keeps its own last good copy.
    - Dish photos and fonts (other hosts): cache first, so after one full round the
-     screen keeps showing everything without internet. */
-var VERSION = 'nova-display-20261110-12';
-var SHELL = ['./', 'index.html', 'display.css?v=20261110-12', 'display.js?v=20261110-12', 'display.json', 'menu.json',
+     screen keeps showing everything without internet.
+   - Video clips (assets/video/): fetched whole by display.js and kept like the page files. */
+var VERSION = 'nova-display-20261111-13';
+var SHELL = ['./', 'index.html', 'display.css?v=20261111-13', 'display.js?v=20261111-13', 'display.json', 'menu.json',
   'manifest.webmanifest',
-  'vendor/kiosk/supplies-reference.js?v=20261110-12', 'vendor/kiosk/supplies-policy.js?v=20261110-12', 'vendor/kiosk/options.js?v=20261110-12',
-  'vendor/kiosk/catalog-view-model.js?v=20261110-12', 'assets/nova-asia-logo-white.png', 'assets/qr-novaasia.svg', 'assets/fonts/archivo-variable-latin.woff2'];
+  'vendor/kiosk/supplies-reference.js?v=20261111-13', 'vendor/kiosk/supplies-policy.js?v=20261111-13', 'vendor/kiosk/options.js?v=20261111-13',
+  'vendor/kiosk/catalog-view-model.js?v=20261111-13', 'assets/nova-asia-logo-white.png', 'assets/qr-novaasia.svg', 'assets/fonts/archivo-variable-latin.woff2'];
 
 self.addEventListener('install', function (event) {
   event.waitUntil(caches.open(VERSION).then(function (cache) { return cache.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
