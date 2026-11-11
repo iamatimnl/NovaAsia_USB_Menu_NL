@@ -49,7 +49,7 @@
    "line": "Krokante chicken katsu op gebakken rijst met ei, lente-ui en zwarte peper."
   },
   { "type": "list", "id": "ramen", "title": "Ramen", "categories": ["ramen"], "hero": "korean-chicken" },
-  { "type": "video", "id": "promo", "src": "assets/video/nova-asia-promo-v7.mp4" },
+  { "type": "video", "id": "promo", "src": "assets/video/nova-asia-promo-v8.mp4" },
   {
    "type": "online", "id": "online",
    "kicker": "Bestel online",
